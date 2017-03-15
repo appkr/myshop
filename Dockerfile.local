@@ -1,0 +1,90 @@
+FROM ubuntu:16.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Seoul
+ENV APACHE_ENVVARS=/etc/apache2/envvars
+ENV WWW_ROOT_DIR=/var/www/html
+ENV MYSQL_DATA_DIR=/var/lib/mysql
+ENV MYSQL_PID_DIR=/var/run/mysqld
+ENV MYSQL_ROOT_PASSWORD=secret
+
+RUN echo "export TERM=xterm-256color" >> /root/.bashrc
+
+#-------------------------------------------------------------------------------
+# System Timezone Setting
+#-------------------------------------------------------------------------------
+
+RUN echo $TZ | tee /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata
+
+#-------------------------------------------------------------------------------
+# Install Packages
+#-------------------------------------------------------------------------------
+
+RUN { \
+    echo mysql-community-server mysql-community-server/data-dir select ''; \
+    echo mysql-community-server mysql-community-server/root-pass password ''; \
+    echo mysql-community-server mysql-community-server/re-root-pass password ''; \
+    echo mysql-community-server mysql-community-server/remove-test-db select false; \
+} | debconf-set-selections
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        apache2 \
+        mysql-server \
+        mysql-client \
+        redis-server \
+        ca-certificates \
+        supervisor \
+        cron \
+        git \
+        vim \
+        php \
+        php-cli \
+        php-intl \
+        php-zip \
+        php-curl \
+        php-gd \
+        php-mbstring \
+        php-mysql \
+        php-sqlite3 \
+        php-xdebug \
+        php-xml \
+        libapache2-mod-php \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+#-------------------------------------------------------------------------------
+# Copy Settings
+#-------------------------------------------------------------------------------
+
+COPY docker-files.local /
+
+#-------------------------------------------------------------------------------
+# Apache Settings
+#-------------------------------------------------------------------------------
+
+RUN a2dissite 000-default \
+    && rm /etc/apache2/sites-available/000-default.conf \
+    && a2ensite server \
+    && a2enmod rewrite deflate headers
+
+#-------------------------------------------------------------------------------
+# Install Cron Job
+#-------------------------------------------------------------------------------
+
+RUN crontab /etc/cron.d/cronjob \
+    && touch /var/log/cron.log
+
+#-------------------------------------------------------------------------------
+# Run Environment
+#-------------------------------------------------------------------------------
+
+VOLUME ["/var/www/html", "/var/lib/mysql"]
+
+EXPOSE 80 3306 6379 9001 9999
+
+WORKDIR /var/www/html
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

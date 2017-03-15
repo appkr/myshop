@@ -1,0 +1,42 @@
+function dip() {
+    docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
+}
+
+function dsm() {
+    docker stop $1 && docker rm $1
+}
+
+function drm() {
+    #docker rm $(docker ps -a -q)
+    docker ps -a -q | xargs docker rm
+}
+
+function drmi() {
+    docker images | grep '<none>' | \
+    awk '{ print $3 }' | \
+    xargs docker rmi
+}
+
+function drun() {
+    docker run --rm -t -i $@
+}
+
+function drund() {
+    docker run -d --name $@ $@
+}
+
+function dbash() {
+    if [ $# -lt 1 ] ; then
+        echo "Please provide a container id or name. Usage: docker-exec-bash <containerIdOrName>"
+    else
+        docker exec -it $1 bash
+    fi
+}
+
+function dps() {
+    docker exec $1 ps -f
+}
+
+function dlogs() {
+    docker logs -f $1
+}
