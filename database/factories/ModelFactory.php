@@ -12,7 +12,9 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$faker = Faker\Factory::create('ko_KR');
+
+$factory->define(App\User::class, function () use ($faker) {
     static $password;
 
     return [
