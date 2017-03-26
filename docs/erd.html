@@ -1,0 +1,1938 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html>
+<html lang='en' xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<title>Sample Layout with Relational Data Browse</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<style type='text/css'>
+body {
+    font-family: 'Segoe UI', 'Lucida sans', Dialog;
+    font-size: 13px;
+    color: #444;
+    margin: 10px;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    caption-side: top;
+    width: auto;
+    margin: 10px 15px 5px 0;
+}
+
+
+.bordered td, .bordered th {
+   background-color: #fafafa;
+   border: 1px solid #D5D5D5;
+   padding: 3px 3px 3px 3px;
+   white-space:pre-wrap!important;
+}
+
+.bordered th {
+    background-color: #f0f0f0;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    padding: 3px 3px 3px 3px;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: left;
+    color: #333333;
+}
+
+.section-header h2 {
+    background-color: #f0f0f0;
+    font-size: 16px;
+    font-weight: normal;
+    border-top: solid 1px #D5D5D5;
+    border-bottom: solid 1px #D5D5D5;
+    width: 95%;
+    margin: 5px 0 5px 0;
+    padding: 5px 0 5px 0;
+    color: #4d82b8;
+}
+.section-header div {
+    font-size: 70%;
+    padding-left: 5px;
+}
+
+
+a, a:visited, a:hover, a:active {
+  color: #044282;
+  text-decoration: none;
+}
+
+th > a {
+    color:#858585;
+}
+
+.lg {
+    font-size: 110%;
+}
+
+h1 {
+    font-family: Verdana,Arial,Helvetica;
+    font-weight: normal;
+    color: #4d82b8;
+    margin: 20px 0 10px 0;
+}
+
+</style>
+</head>
+
+<body>
+<div class='svg-container'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' text-rendering='optimizeLegibility'   width='1312' height='1246' viewbox='0 0 1312 1246' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','scene'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#000000; font-family: Trebuchet MS, 'Trebuchet MS', Dialog; font-size:12px; }
+  a text:hover        { text-shadow: 0 0 6px #d0ce00; }
+  text.highlight      { text-shadow: 0 0 4px #eac533; }
+  text.colType        { fill:#b3b3b3; }
+  text.relName        { fill:#b09c7c; }
+  path                { stroke:#5c554f; stroke-width:1.15; fill:none; }
+  path.virtual        { stroke:#b7642d; }
+  path.dotted         { stroke-dasharray:4,2; }
+  path.scene          { stroke-width:10; opacity:0;}
+  path.highlight      { stroke-width:5; stroke:#eac533; opacity:0.6;}
+  rect.table          { fill:#ffffff; stroke:#aaa; stroke-width:1;shape-rendering:crispEdges;filter:url(#shadow); }
+  line.delim          { stroke-width:1; shape-rendering:crispEdges; }
+  text.callout        { fill:#000000; font-family: Trebuchet MS, 'Trebuchet MS', Dialog; font-size:12px; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#bebdbd; stroke-width:0.5; filter: url(#shadow);}
+  rect.grp            { stroke:#b1b1b1; stroke-width:1.7; opacity:0.8; }
+</style>
+<defs>
+  <pattern id='layoutBgA' patternUnits='userSpaceOnUse'  width='10' height='20' x='0' y='0' viewBox='0 0 5 10'>  
+     <line x1='-2' y1='1' x2='7' y2='10' stroke='#efefef' stroke-width='.5'/>  
+     <line x1='-2' y1='6' x2='7' y2='15' stroke='#efefef' stroke-width='.5'/>  
+     <line x1='-2' y1='-4' x2='7' y2='5' stroke='#efefef' stroke-width='.5'/>  
+  </pattern>  
+  <radialGradient id='layoutBgB' gradientUnits='userSpaceOnUse' cx='50%' cy='50%' r='75%' fx='46%' fy='22%'>
+     <stop offset='0%' stop-opacity='.2' stop-color='#f5f5f5' />  
+     <stop offset='100%' stop-color='#efefef' />  
+  </radialGradient>
+  <pattern id='layoutBgTr' patternUnits='userSpaceOnUse'  width='300' height='300' x='0' y='0' viewBox='0 0 300 300'>  
+    <text x='-85' y='200' transform='rotate(-45)' style='font-family:Arial;font-size:78px;font-weight:bold;fill:#e7e7e7;'>&#84;&#82;&#73;&#65;&#76;</text> 
+    <text x='-130' y='230' transform='rotate(-45)' style='font-family:Arial;font-size:24px;font-weight:bold;fill:#e7e7e7;'>&#77;ove &#116;he m&#111;use &#111;ver &#116;ables</text> 
+    <text x='-85' y='250' transform='rotate(-45)' style='font-family:Arial;font-size:24px;font-weight:bold;fill:#e7e7e7;'>&#116;o re&#97;d &#116;he c&#111;mmen&#116;s</text> 
+  </pattern>  
+  <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+          <stop offset='0%' stop-color='#999999' stop-opacity='0.7'/> 
+          <stop offset='100%' stop-color='#999999' stop-opacity='0' /> 
+   </linearGradient>
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+	   <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f8f6d1' />
+  </radialGradient>
+  <filter id='shadow' width='120%' height='120%'> 
+      <feOffset result='offOut' in='SourceGraphic' dx='1' dy='1' /> 
+      <feColorMatrix result='matrixOut' in='offOut' type='matrix' 
+      values='0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.3 0' /> 
+      <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' /> 
+      <feBlend in='SourceGraphic' in2='blurOut' mode='normal' /> 
+    </filter> 
+  <filter id='fkShadow' height='130%'> 
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+    <feMergeNode/> <!-- this contains the offset blurred image -->
+    <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' fx='5%' fy='5%' r='75%' spreadMethod='pad'>
+          <stop offset='0%' stop-color='#eefbf2' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#cff9cb' stop-opacity='1' /> 
+   </radialGradient>
+  <symbol id='calloutArrowDown' overflow='visible' >
+      <path d='M 0,0 L 8,12 L 16,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+      <path d='M 0,0 L 8,12 L 16,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' overflow='visible' >
+      <path d='M 0,16 L 8,4 L 16,16 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+      <path d='M 0,16 L 8,4 L 16,16' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <path style='fill:#fffa7d;stroke:#765f03;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+        d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+     <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+        style='fill:#ffe5a5;fill-opacity:1;stroke:#854e31;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='unq' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.8' y='7.4' style='font-size:7px;fill:#8a8a8a;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#f3e1b7;stroke:#7e471f;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+      d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#f3e1b7;stroke:#7e471f;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag0' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag1' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#f4a393;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag2' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#77ec8b;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' overflow='visible' >
+  <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='view' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <line x1='12' y1='6' x2='19' y2='0' stroke='black' stroke-width='0.5' />
+     <line x1='0' y1='6' x2='7' y2='0' stroke='black' stroke-width='0.5' />
+     <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+     <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+    </g>
+  </symbol>
+  <marker id='arrow01' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerUnits='strokeWidth' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 8.000,4.000 L 16.000,4.000 L 8.000,0.000 L 16.000,4.000 L 8.000,8.000' />
+  </marker>
+  <marker id='arrow1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerUnits='strokeWidth' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 8.000,4.000 L 16.000,4.000 L 8.000,0.000 L 16.000,4.000 L 8.000,8.000' />
+  </marker>
+  <marker id='foot01' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerUnits='strokeWidth' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <circle cx='12.00' cy='4.00' r='2.67' style='fill:white;stroke:#5e554d;' />
+    <path d='M 4.00,0.00 L 4.00, 8.00 z' />
+  </marker>
+  <marker id='foot0p' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerUnits='strokeWidth' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <circle cx='12.00' cy='4.00' r='2.67' style='fill:white;stroke:#5e554d;' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <marker id='foot1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerUnits='strokeWidth' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 8.00,0.00 L 8.00, 8.00 z' />
+    <path d='M 4.00,0.00 L 4.00, 8.00 z' />
+  </marker>
+  <marker id='foot1p' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerUnits='strokeWidth' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 8.00,0.00 L 8.00, 8.00 z' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <linearGradient id='tbg_bfd4f5' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#f9fafc' /> 
+     <stop offset='100%' stop-color='#c8daf5' /> 
+  </linearGradient>
+  <linearGradient id='tbg_f5ddbf' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#fcfbf9' /> 
+     <stop offset='100%' stop-color='#f5e1c8' /> 
+  </linearGradient>
+  <linearGradient id='tbg_c8f5bf' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#fafcf9' /> 
+     <stop offset='100%' stop-color='#d0f5c8' /> 
+  </linearGradient>
+  <linearGradient id='tbg_bfbff5' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#f9f9fc' /> 
+     <stop offset='100%' stop-color='#c8c8f5' /> 
+  </linearGradient>
+</defs>
+
+<!-- ============= Desktop ============= -->
+<rect x='1' y='1' width='1310' height='1244' rx='8' ry='8' style='fill:url(#layoutBgB); stroke:#333333; stroke-width:0.5;' />
+<rect x='1' y='1' width='1310' height='1244' rx='8' ry='8' style='fill:url(#layoutBgTr);' />
+<rect x='1' y='1' width='1310' height='1244' rx='8' ry='8' style='fill:url(#layoutBgA); stroke:#333333; stroke-width:0.5;' />
+
+<!-- ============= Legend ============= -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='330' height='52' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='65' y='33'>Sample Layout with Relational Data Browse</text> 
+  <text x='65' y='49' style='fill:#aaaaaa; font-size:11px;'><tspan>Read table &amp; column comments as mouse-over tooltips.</tspan></text> 
+<g transform="scale(0.75,0.75) translate(10,7)" > <a xlink:href='http://www.dbschema.com'> <rect style="fill:#eb7f2c;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="40.04" y="59.44" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="54.83" y="59.57" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="40.35" y="71.62" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="54.68" y="71.75" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="13.48" y="19.67" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#eb7f2c;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="28.36" y="19.80" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="13.79" y="31.78" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="28.21" y="31.92" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="34.59" y="-9.62" ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="49.63" y="-9.46" ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="34.90" y="5.77"  ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <rect style="fill:#eb7f2c;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="49.47" y="5.93"  ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <title>Generated using DbSchema - www.dbschema.com</title> </a></g>
+</g>
+
+<g transform='translate(0,110)'>
+<!-- ============= Fk 'addresses_addresses_customer_id_foreign' ============= -->
+<path id='addresses_addresses_customer_id_foreign'  onmouseover="hghl(['addresses_addresses_customer_id_foreign','myshop.addresses.customer_id','myshop.customers.id'])" onmouseout="uhghl(['addresses_addresses_customer_id_foreign','myshop.addresses.customer_id','myshop.customers.id'])" transform='translate(8,0)' class='scene' d='M 1088 208 L 1064,208 Q 1056,208 1056,200 L 1056,200 Q 1056,192 1048,192 L 1040,192' >
+	<title>Fk addresses_customer_id_foreign
+addresses ref customers ( customer_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1088 208 L 1064,208 Q 1056,208 1056,200 L 1056,200 Q 1056,192 1048,192 L 1040,192' ></path>
+<text x='1024' y='203' transform='rotate(0 1024,203)' title='Fk addresses_customer_id_foreign
+addresses ref customers ( customer_id -&gt; id )' class='relName'>customer_id</text>
+<!-- ============= Fk 'announcements_announcements_member_id_foreign' ============= -->
+<path id='announcements_announcements_member_id_foreign'  onmouseover="hghl(['announcements_announcements_member_id_foreign','myshop.announcements.member_id','myshop.members.id'])" onmouseout="uhghl(['announcements_announcements_member_id_foreign','myshop.announcements.member_id','myshop.members.id'])" transform='translate(8,0)' class='scene' d='M 288 208 L 264,208 Q 256,208 256,200 L 256,200 Q 256,192 248,192 L 240,192' >
+	<title>Fk announcements_member_id_foreign
+announcements ref members ( member_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 288 208 L 264,208 Q 256,208 256,200 L 256,200 Q 256,192 248,192 L 240,192' ></path>
+<text x='229' y='203' transform='rotate(0 229,203)' title='Fk announcements_member_id_foreign
+announcements ref members ( member_id -&gt; id )' class='relName'>member_id</text>
+<!-- ============= Fk 'deliveries_deliveries_address_id_foreign' ============= -->
+<path id='deliveries_deliveries_address_id_foreign'  onmouseover="hghl(['deliveries_deliveries_address_id_foreign','myshop.deliveries.address_id','myshop.addresses.id'])" onmouseout="uhghl(['deliveries_deliveries_address_id_foreign','myshop.deliveries.address_id','myshop.addresses.id'])" transform='translate(8,0)' class='scene' d='M 1088 576 L 1080,576 Q 1072,576 1072,568 L 1072,200 Q 1072,192 1080,192 L 1088,192' >
+	<title>Fk deliveries_address_id_foreign
+deliveries ref addresses ( address_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1088 576 L 1080,576 Q 1072,576 1072,568 L 1072,200 Q 1072,192 1080,192 L 1088,192' ></path>
+<text x='1033' y='571' transform='rotate(0 1033,571)' title='Fk deliveries_address_id_foreign
+deliveries ref addresses ( address_id -&gt; id )' class='relName'>address_id</text>
+<!-- ============= Fk 'deliveries_deliveries_order_id_foreign' ============= -->
+<path id='deliveries_deliveries_order_id_foreign'  onmouseover="hghl(['deliveries_deliveries_order_id_foreign','myshop.deliveries.order_id','myshop.orders.id'])" onmouseout="uhghl(['deliveries_deliveries_order_id_foreign','myshop.deliveries.order_id','myshop.orders.id'])" transform='translate(8,0)' class='scene' d='M 1088 560 L 1032,560 Q 1024,560 1024,568 L 1024,872 Q 1024,880 1016,880 L 232,880 Q 224,880 224,872 L 224,712 Q 224,704 216,704 L 208,704' >
+	<title>Fk deliveries_order_id_foreign
+deliveries ref orders ( order_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1088 560 L 1032,560 Q 1024,560 1024,568 L 1024,872 Q 1024,880 1016,880 L 232,880 Q 224,880 224,872 L 224,712 Q 224,704 216,704 L 208,704' ></path>
+<text x='1045' y='555' transform='rotate(0 1045,555)' title='Fk deliveries_order_id_foreign
+deliveries ref orders ( order_id -&gt; id )' class='relName'>order_id</text>
+<!-- ============= Fk 'images_images_product_id_foreign' ============= -->
+<path id='images_images_product_id_foreign'  onmouseover="hghl(['images_images_product_id_foreign','myshop.images.product_id','myshop.products.id'])" onmouseout="uhghl(['images_images_product_id_foreign','myshop.images.product_id','myshop.products.id'])" transform='translate(8,0)' class='scene' d='M 672 208 L 648,208 Q 640,208 640,200 L 640,200 Q 640,192 632,192 L 624,192' >
+	<title>Fk images_product_id_foreign
+images ref products ( product_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 672 208 L 648,208 Q 640,208 640,200 L 640,200 Q 640,192 632,192 L 624,192' ></path>
+<text x='616' y='203' transform='rotate(0 616,203)' title='Fk images_product_id_foreign
+images ref products ( product_id -&gt; id )' class='relName'>product_id</text>
+<!-- ============= Fk 'order_product_order_product_order_id_foreign' ============= -->
+<path id='order_product_order_product_order_id_foreign'  onmouseover="hghl(['order_product_order_product_order_id_foreign','myshop.order_product.order_id','myshop.orders.id'])" onmouseout="uhghl(['order_product_order_product_order_id_foreign','myshop.order_product.order_id','myshop.orders.id'])" transform='translate(8,0)' class='scene' d='M 256 960 L 248,960 Q 240,960 240,952 L 240,888 Q 240,880 232,880 L 224,880' >
+	<title>Fk order_product_order_id_foreign
+order_product ref orders ( order_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)'     d='M 256 960 L 248,960 Q 240,960 240,952 L 240,888 Q 240,880 232,880 L 224,880' ></path>
+<text x='213' y='955' transform='rotate(0 213,955)' title='Fk order_product_order_id_foreign
+order_product ref orders ( order_id -&gt; id )' class='relName'>order_id</text>
+<!-- ============= Fk 'order_product_order_product_product_id_foreign' ============= -->
+<path id='order_product_order_product_product_id_foreign'  onmouseover="hghl(['order_product_order_product_product_id_foreign','myshop.order_product.product_id','myshop.products.id'])" onmouseout="uhghl(['order_product_order_product_product_id_foreign','myshop.order_product.product_id','myshop.products.id'])" transform='translate(8,0)' class='scene' d='M 384 976 L 472,976 Q 480,976 480,968 L 480,200 Q 480,192 488,192 L 496,192' >
+	<title>Fk order_product_product_id_foreign
+order_product ref products ( product_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 384 976 L 472,976 Q 480,976 480,968 L 480,200 Q 480,192 488,192 L 496,192' ></path>
+<text x='393' y='971' transform='rotate(0 393,971)' title='Fk order_product_product_id_foreign
+order_product ref products ( product_id -&gt; id )' class='relName'>product_id</text>
+<!-- ============= Fk 'orders_orders_customer_id_foreign' ============= -->
+<path id='orders_orders_customer_id_foreign'  onmouseover="hghl(['orders_orders_customer_id_foreign','myshop.orders.customer_id','myshop.customers.id'])" onmouseout="uhghl(['orders_orders_customer_id_foreign','myshop.orders.customer_id','myshop.customers.id'])" transform='translate(8,0)' class='scene' d='M 32 720 L 24,720 Q 16,720 16,712 L 16,704' >
+	<title>Fk orders_customer_id_foreign
+orders ref customers ( customer_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)'     d='M 32 720 L 24,720 Q 16,720 16,712 L 16,704' ></path>
+<text x='-32' y='715' transform='rotate(0 -32,715)' title='Fk orders_customer_id_foreign
+orders ref customers ( customer_id -&gt; id )' class='relName'>customer_id</text>
+<!-- ============= Fk 'products_products_category_id_foreign' ============= -->
+<path id='products_products_category_id_foreign'  onmouseover="hghl(['products_products_category_id_foreign','myshop.products.category_id','myshop.categories.id'])" onmouseout="uhghl(['products_products_category_id_foreign','myshop.products.category_id','myshop.categories.id'])" transform='translate(8,0)' class='scene' d='M 624 224 L 648,224 Q 656,224 656,232 L 656,472 Q 656,480 664,480 L 672,480' >
+	<title>Fk products_category_id_foreign
+products ref categories ( category_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 624 224 L 648,224 Q 656,224 656,232 L 656,472 Q 656,480 664,480 L 672,480' ></path>
+<text x='633' y='219' transform='rotate(0 633,219)' title='Fk products_category_id_foreign
+products ref categories ( category_id -&gt; id )' class='relName'>category_id</text>
+<!-- ============= Fk 'products_products_member_id_foreign' ============= -->
+<path id='products_products_member_id_foreign'  onmouseover="hghl(['products_products_member_id_foreign','myshop.products.member_id','myshop.members.id'])" onmouseout="uhghl(['products_products_member_id_foreign','myshop.products.member_id','myshop.members.id'])" transform='translate(8,0)' class='scene' d='M 496 208 L 440,208 Q 432,208 432,200 L 432,136 Q 432,128 424,128 L 264,128 Q 256,128 256,136 L 256,184 Q 256,192 248,192 L 240,192' >
+	<title>Fk products_member_id_foreign
+products ref members ( member_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)'     d='M 496 208 L 440,208 Q 432,208 432,200 L 432,136 Q 432,128 424,128 L 264,128 Q 256,128 256,136 L 256,184 Q 256,192 248,192 L 240,192' ></path>
+<text x='437' y='203' transform='rotate(0 437,203)' title='Fk products_member_id_foreign
+products ref members ( member_id -&gt; id )' class='relName'>member_id</text>
+<!-- ============= Fk 'questions_questions_product_id_foreign' ============= -->
+<path id='questions_questions_product_id_foreign'  onmouseover="hghl(['questions_questions_product_id_foreign','myshop.questions.product_id','myshop.products.id'])" onmouseout="uhghl(['questions_questions_product_id_foreign','myshop.questions.product_id','myshop.products.id'])" transform='translate(8,0)' class='scene' d='M 416 752 L 472,752 Q 480,752 480,744 L 480,736' >
+	<title>Fk questions_product_id_foreign
+questions ref products ( product_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)'     d='M 416 752 L 472,752 Q 480,752 480,744 L 480,736' ></path>
+<text x='425' y='747' transform='rotate(0 425,747)' title='Fk questions_product_id_foreign
+questions ref products ( product_id -&gt; id )' class='relName'>product_id</text>
+<!-- ============= Fk 'questions_questions_parent_id_foreign' ============= -->
+<path id='questions_questions_parent_id_foreign'  onmouseover="hghl(['questions_questions_parent_id_foreign','myshop.questions.parent_id','myshop.questions.id'])" onmouseout="uhghl(['questions_questions_parent_id_foreign','myshop.questions.parent_id','myshop.questions.id'])" transform='translate(8,0)' class='scene' d='M 256 768 L 248,768 Q 240,768 240,760 L 240,712 Q 240,704 248,704 L 256,704' >
+	<title>Fk questions_parent_id_foreign
+questions ref questions ( parent_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 256 768 L 248,768 Q 240,768 240,760 L 240,712 Q 240,704 248,704 L 256,704' ></path>
+<text x='206' y='763' transform='rotate(0 206,763)' title='Fk questions_parent_id_foreign
+questions ref questions ( parent_id -&gt; id )' class='relName'>parent_id</text>
+<!-- ============= Fk 'reviews_reviews_customer_id_foreign' ============= -->
+<path id='reviews_reviews_customer_id_foreign'  onmouseover="hghl(['reviews_reviews_customer_id_foreign','myshop.reviews.customer_id','myshop.customers.id'])" onmouseout="uhghl(['reviews_reviews_customer_id_foreign','myshop.reviews.customer_id','myshop.customers.id'])" transform='translate(8,0)' class='scene' d='M 32 976 L 24,976 Q 16,976 16,968 L 16,584 Q 16,576 24,576 L 856,576 Q 864,576 864,568 L 864,200 Q 864,192 872,192 L 880,192' >
+	<title>Fk reviews_customer_id_foreign
+reviews ref customers ( customer_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 32 976 L 24,976 Q 16,976 16,968 L 16,584 Q 16,576 24,576 L 856,576 Q 864,576 864,568 L 864,200 Q 864,192 872,192 L 880,192' ></path>
+<text x='-32' y='971' transform='rotate(0 -32,971)' title='Fk reviews_customer_id_foreign
+reviews ref customers ( customer_id -&gt; id )' class='relName'>customer_id</text>
+<!-- ============= Fk 'reviews_reviews_order_id_foreign' ============= -->
+<path id='reviews_reviews_order_id_foreign'  onmouseover="hghl(['reviews_reviews_order_id_foreign','myshop.reviews.order_id','myshop.orders.id'])" onmouseout="uhghl(['reviews_reviews_order_id_foreign','myshop.reviews.order_id','myshop.orders.id'])" transform='translate(8,0)' class='scene' d='M 160 992 L 232,992 Q 240,992 240,984 L 240,944' >
+	<title>Fk reviews_order_id_foreign
+reviews ref orders ( order_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)'     d='M 160 992 L 232,992 Q 240,992 240,984 L 240,944' ></path>
+<text x='169' y='987' transform='rotate(0 169,987)' title='Fk reviews_order_id_foreign
+reviews ref orders ( order_id -&gt; id )' class='relName'>order_id</text>
+<!-- ============= Fk 'wishlists_wishlists_customer_id_foreign' ============= -->
+<path id='wishlists_wishlists_customer_id_foreign'  onmouseover="hghl(['wishlists_wishlists_customer_id_foreign','myshop.wishlists.customer_id','myshop.customers.id'])" onmouseout="uhghl(['wishlists_wishlists_customer_id_foreign','myshop.wishlists.customer_id','myshop.customers.id'])" transform='translate(8,0)' class='scene' d='M 880 560 L 872,560 Q 864,560 864,552 L 864,544' >
+	<title>Fk wishlists_customer_id_foreign
+wishlists ref customers ( customer_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)'     d='M 880 560 L 872,560 Q 864,560 864,552 L 864,544' ></path>
+<text x='816' y='555' transform='rotate(0 816,555)' title='Fk wishlists_customer_id_foreign
+wishlists ref customers ( customer_id -&gt; id )' class='relName'>customer_id</text>
+<!-- ============= Fk 'wishlists_wishlists_product_id_foreign' ============= -->
+<path id='wishlists_wishlists_product_id_foreign'  onmouseover="hghl(['wishlists_wishlists_product_id_foreign','myshop.wishlists.product_id','myshop.products.id'])" onmouseout="uhghl(['wishlists_wishlists_product_id_foreign','myshop.wishlists.product_id','myshop.products.id'])" transform='translate(8,0)' class='scene' d='M 1008 576 L 1032,576 Q 1040,576 1040,584 L 1040,648 Q 1040,656 1032,656 L 488,656 Q 480,656 480,648 L 480,640' >
+	<title>Fk wishlists_product_id_foreign
+wishlists ref products ( product_id -&gt; id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)'     d='M 1008 576 L 1032,576 Q 1040,576 1040,584 L 1040,648 Q 1040,656 1032,656 L 488,656 Q 480,656 480,648 L 480,640' ></path>
+<text x='1017' y='571' transform='rotate(0 1017,571)' title='Fk wishlists_product_id_foreign
+wishlists ref products ( product_id -&gt; id )' class='relName'>product_id</text>
+<!-- ============= Table 'addresses' ============= -->
+<rect class='table' x='1104' y='152' width='112' height='144' rx='8' ry='8' style='fill:url(#tbg_bfd4f5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='1104.00' y1='180.00' x2='1216.00' y2='180.00'/>
+<line class='delim' x1='1104.000000' y1='180.000000' x2='1216.000000' y2='180.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='1120.000000' y1='180.000000' x2='1120.000000' y2='296.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='1204.000000' y1='180.000000' x2='1204.000000' y2='296.000000' style='stroke:#b6c3d8'/>
+<a xlink:href='#addresses'><text x='1129' y='172'>addresses</text><title>Table myshop.addresses</title></a>
+  <use id='nn' x='1106' y='189' xlink:href='#nn'/><a xlink:href='#addresses.id'><use id='pk' x='1106' y='188' xlink:href='#pk'/><title>Pk pk_addresses ( id ) </title></a>
+<a xlink:href='#addresses.id'><text id='myshop.addresses.id' x='1123' y='199' onmouseover="hghl(['deliveries_deliveries_address_id_foreign'])" onmouseout="uhghl(['deliveries_deliveries_address_id_foreign'])">id</text><title>id
+* int</title></a>
+<a xlink:href='#addresses.id'><use id='ref' x='1204' y='188' xlink:href='#ref'/><title>Referred by deliveries ( address_id -&gt; id ) </title></a>
+  <use id='nn' x='1106' y='205' xlink:href='#nn'/><a xlink:href='#addresses.customer_id'><use id='idx' x='1106' y='204' xlink:href='#idx'/><title>addresses_customer_id_index ( customer_id ) </title></a>
+<a xlink:href='#addresses.customer_id'><text id='myshop.addresses.customer_id' x='1123' y='215' onmouseover="hghl(['addresses_addresses_customer_id_foreign'])" onmouseout="uhghl(['addresses_addresses_customer_id_foreign'])">customer_id</text><title>customer_id
+* int
+주소 소유자</title></a>
+<a xlink:href='#addresses.customer_id'><use id='fk' x='1204' y='204' xlink:href='#fk'/><title>References customers ( customer_id -&gt; id ) </title></a>
+  <a xlink:href='#addresses.zipcode'><text id='myshop.addresses.zipcode' x='1123' y='231'>zipcode</text><title>zipcode
+varchar(10)
+우편번호</title></a>
+  <a xlink:href='#addresses.address'><text id='myshop.addresses.address' x='1123' y='247'>address</text><title>address
+varchar(255)
+주소</title></a>
+  <a xlink:href='#addresses.created_at'><text id='myshop.addresses.created_at' x='1123' y='263'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#addresses.updated_at'><text id='myshop.addresses.updated_at' x='1123' y='279'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'announcements' ============= -->
+<rect class='table' x='304' y='152' width='112' height='128' rx='8' ry='8' style='fill:url(#tbg_f5ddbf);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='304.00' y1='180.00' x2='416.00' y2='180.00'/>
+<line class='delim' x1='304.000000' y1='180.000000' x2='416.000000' y2='180.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='320.000000' y1='180.000000' x2='320.000000' y2='280.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='404.000000' y1='180.000000' x2='404.000000' y2='280.000000' style='stroke:#d8c9b6'/>
+<a xlink:href='#announcements'><text x='312' y='172'>announcements</text><title>Table myshop.announcements</title></a>
+  <use id='nn' x='306' y='189' xlink:href='#nn'/><a xlink:href='#announcements.id'><use id='pk' x='306' y='188' xlink:href='#pk'/><title>Pk pk_announcements ( id ) </title></a>
+<a xlink:href='#announcements.id'><text id='myshop.announcements.id' x='323' y='199'>id</text><title>id
+* int</title></a>
+  <use id='nn' x='306' y='205' xlink:href='#nn'/><a xlink:href='#announcements.member_id'><use id='idx' x='306' y='204' xlink:href='#idx'/><title>announcements_member_id_index ( member_id ) </title></a>
+<a xlink:href='#announcements.member_id'><text id='myshop.announcements.member_id' x='323' y='215' onmouseover="hghl(['announcements_announcements_member_id_foreign'])" onmouseout="uhghl(['announcements_announcements_member_id_foreign'])">member_id</text><title>member_id
+* int
+공지 작성자</title></a>
+<a xlink:href='#announcements.member_id'><use id='fk' x='404' y='204' xlink:href='#fk'/><title>References members ( member_id -&gt; id ) </title></a>
+  <a xlink:href='#announcements.content'><text id='myshop.announcements.content' x='323' y='231'>content</text><title>content
+text
+공지 본문</title></a>
+  <a xlink:href='#announcements.created_at'><text id='myshop.announcements.created_at' x='323' y='247'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#announcements.updated_at'><text id='myshop.announcements.updated_at' x='323' y='263'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'categories' ============= -->
+<rect class='table' x='688' y='440' width='112' height='112' rx='8' ry='8' style='fill:url(#tbg_c8f5bf);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='688.00' y1='468.00' x2='800.00' y2='468.00'/>
+<line class='delim' x1='688.000000' y1='468.000000' x2='800.000000' y2='468.000000' style='stroke:#bcd8b6'/>
+<line class='delim' x1='704.000000' y1='468.000000' x2='704.000000' y2='552.000000' style='stroke:#bcd8b6'/>
+<line class='delim' x1='788.000000' y1='468.000000' x2='788.000000' y2='552.000000' style='stroke:#bcd8b6'/>
+<a xlink:href='#categories'><text x='712' y='460'>categories</text><title>Table myshop.categories</title></a>
+  <use id='nn' x='690' y='477' xlink:href='#nn'/><a xlink:href='#categories.id'><use id='pk' x='690' y='476' xlink:href='#pk'/><title>Pk pk_categories ( id ) </title></a>
+<a xlink:href='#categories.id'><text id='myshop.categories.id' x='707' y='487' onmouseover="hghl(['products_products_category_id_foreign'])" onmouseout="uhghl(['products_products_category_id_foreign'])">id</text><title>id
+* int
+카테고리 이름</title></a>
+<a xlink:href='#categories.id'><use id='ref' x='788' y='476' xlink:href='#ref'/><title>Referred by products ( category_id -&gt; id ) </title></a>
+  <use id='nn' x='690' y='493' xlink:href='#nn'/><a xlink:href='#categories.name'><text id='myshop.categories.name' x='707' y='503'>name</text><title>name
+* varchar(20)</title></a>
+  <a xlink:href='#categories.created_at'><text id='myshop.categories.created_at' x='707' y='519'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#categories.updated_at'><text id='myshop.categories.updated_at' x='707' y='535'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'customers' ============= -->
+<rect class='table' x='896' y='152' width='144' height='288' rx='8' ry='8' style='fill:url(#tbg_bfd4f5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='896.00' y1='180.00' x2='1040.00' y2='180.00'/>
+<line class='delim' x1='896.000000' y1='180.000000' x2='1040.000000' y2='180.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='912.000000' y1='180.000000' x2='912.000000' y2='440.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='1028.000000' y1='180.000000' x2='1028.000000' y2='440.000000' style='stroke:#b6c3d8'/>
+<a xlink:href='#customers'><text x='936' y='172'>customers</text><title>Table myshop.customers</title></a>
+  <use id='nn' x='898' y='189' xlink:href='#nn'/><a xlink:href='#customers.id'><use id='pk' x='898' y='188' xlink:href='#pk'/><title>Pk pk_customers ( id ) </title></a>
+<a xlink:href='#customers.id'><text id='myshop.customers.id' x='915' y='199' onmouseover="hghl(['addresses_addresses_customer_id_foreign','orders_orders_customer_id_foreign','reviews_reviews_customer_id_foreign','wishlists_wishlists_customer_id_foreign'])" onmouseout="uhghl(['addresses_addresses_customer_id_foreign','orders_orders_customer_id_foreign','reviews_reviews_customer_id_foreign','wishlists_wishlists_customer_id_foreign'])">id</text><title>id
+* int</title></a>
+<a xlink:href='#customers.id'><use id='ref' x='1028' y='188' xlink:href='#ref'/><title>Referred by addresses ( customer_id -&gt; id ) 
+Referred by orders ( customer_id -&gt; id ) 
+Referred by reviews ( customer_id -&gt; id ) 
+Referred by wishlists ( customer_id -&gt; id ) </title></a>
+  <use id='nn' x='898' y='205' xlink:href='#nn'/><a xlink:href='#customers.name'><text id='myshop.customers.name' x='915' y='215'>name</text><title>name
+* varchar(255)
+사용자 이름</title></a>
+  <use id='nn' x='898' y='221' xlink:href='#nn'/><a xlink:href='#customers.email'><use id='unq' x='898' y='220' xlink:href='#unq'/><title>Unq customers_email_unique ( email ) </title></a>
+<a xlink:href='#customers.email'><text id='myshop.customers.email' x='915' y='231'>email</text><title>email
+* varchar(255)
+이메일 (로그인에 사용됨)</title></a>
+  <a xlink:href='#customers.password'><text id='myshop.customers.password' x='915' y='247'>password</text><title>password
+varchar(255)
+비밀번호</title></a>
+  <a xlink:href='#customers.remember_token'><text id='myshop.customers.remember_token' x='915' y='263'>remember_token</text><title>remember_token
+varchar(100)
+로그인 기억 토큰</title></a>
+  <a xlink:href='#customers.zipcode'><text id='myshop.customers.zipcode' x='915' y='279'>zipcode</text><title>zipcode
+varchar(10)
+우편번호</title></a>
+  <a xlink:href='#customers.address'><text id='myshop.customers.address' x='915' y='295'>address</text><title>address
+varchar(255)
+주소</title></a>
+  <a xlink:href='#customers.phone_number'><text id='myshop.customers.phone_number' x='915' y='311'>phone_number</text><title>phone_number
+varchar(20)
+전화번호</title></a>
+  <a xlink:href='#customers.date_of_birth'><text id='myshop.customers.date_of_birth' x='915' y='327'>date_of_birth</text><title>date_of_birth
+date
+생년월일</title></a>
+  <a xlink:href='#customers.gender'><text id='myshop.customers.gender' x='915' y='343'>gender</text><title>gender
+varchar(255)
+성별</title></a>
+  <a xlink:href='#customers.profile'><text id='myshop.customers.profile' x='915' y='359'>profile</text><title>profile
+text
+자기 소개</title></a>
+  <use id='nn' x='898' y='365' xlink:href='#nn'/><a xlink:href='#customers.points'><text id='myshop.customers.points' x='915' y='375'>points</text><title>points
+* int default 0
+포인트</title></a>
+  <a xlink:href='#customers.created_at'><text id='myshop.customers.created_at' x='915' y='391'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#customers.updated_at'><text id='myshop.customers.updated_at' x='915' y='407'>updated_at</text><title>updated_at
+timestamp</title></a>
+  <a xlink:href='#customers.deleted_at'><text id='myshop.customers.deleted_at' x='915' y='423'>deleted_at</text><title>deleted_at
+timestamp</title></a>
+
+<!-- ============= Table 'deliveries' ============= -->
+<rect class='table' x='1104' y='504' width='160' height='224' rx='8' ry='8' style='fill:url(#tbg_bfd4f5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='1104.00' y1='532.00' x2='1264.00' y2='532.00'/>
+<line class='delim' x1='1104.000000' y1='532.000000' x2='1264.000000' y2='532.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='1120.000000' y1='532.000000' x2='1120.000000' y2='728.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='1252.000000' y1='532.000000' x2='1252.000000' y2='728.000000' style='stroke:#b6c3d8'/>
+<a xlink:href='#deliveries'><text x='1153' y='524'>deliveries</text><title>Table myshop.deliveries</title></a>
+  <use id='nn' x='1106' y='541' xlink:href='#nn'/><a xlink:href='#deliveries.id'><use id='pk' x='1106' y='540' xlink:href='#pk'/><title>Pk pk_deliveries ( id ) </title></a>
+<a xlink:href='#deliveries.id'><text id='myshop.deliveries.id' x='1123' y='551'>id</text><title>id
+* int</title></a>
+  <use id='nn' x='1106' y='557' xlink:href='#nn'/><a xlink:href='#deliveries.order_id'><use id='idx' x='1106' y='556' xlink:href='#idx'/><title>deliveries_order_id_index ( order_id ) </title></a>
+<a xlink:href='#deliveries.order_id'><text id='myshop.deliveries.order_id' x='1123' y='567' onmouseover="hghl(['deliveries_deliveries_order_id_foreign'])" onmouseout="uhghl(['deliveries_deliveries_order_id_foreign'])">order_id</text><title>order_id
+* int
+주문</title></a>
+<a xlink:href='#deliveries.order_id'><use id='fk' x='1252' y='556' xlink:href='#fk'/><title>References orders ( order_id -&gt; id ) </title></a>
+  <use id='nn' x='1106' y='573' xlink:href='#nn'/><a xlink:href='#deliveries.address_id'><use id='idx' x='1106' y='572' xlink:href='#idx'/><title>deliveries_address_id_index ( address_id ) </title></a>
+<a xlink:href='#deliveries.address_id'><text id='myshop.deliveries.address_id' x='1123' y='583' onmouseover="hghl(['deliveries_deliveries_address_id_foreign'])" onmouseout="uhghl(['deliveries_deliveries_address_id_foreign'])">address_id</text><title>address_id
+* int
+배송 목적지</title></a>
+<a xlink:href='#deliveries.address_id'><use id='fk' x='1252' y='572' xlink:href='#fk'/><title>References addresses ( address_id -&gt; id ) </title></a>
+  <use id='nn' x='1106' y='589' xlink:href='#nn'/><a xlink:href='#deliveries.weight'><text id='myshop.deliveries.weight' x='1123' y='599'>weight</text><title>weight
+* double default 0.00
+무게</title></a>
+  <use id='nn' x='1106' y='605' xlink:href='#nn'/><a xlink:href='#deliveries.package_type'><text id='myshop.deliveries.package_type' x='1123' y='615'>package_type</text><title>package_type
+* varchar(255) default '포장재'</title></a>
+  <use id='nn' x='1106' y='621' xlink:href='#nn'/><a xlink:href='#deliveries.status'><text id='myshop.deliveries.status' x='1123' y='631'>status</text><title>status
+* varchar(20) default 'SUBMITTED'
+배송상태</title></a>
+  <use id='nn' x='1106' y='637' xlink:href='#nn'/><a xlink:href='#deliveries.agent'><text id='myshop.deliveries.agent' x='1123' y='647'>agent</text><title>agent
+* varchar(20) default 'EMS'
+택배사</title></a>
+  <use id='nn' x='1106' y='653' xlink:href='#nn'/><a xlink:href='#deliveries.payable_delivery_fee'><text id='myshop.deliveries.payable_delivery_fee' x='1123' y='663'>payable_delivery_fee</text><title>payable_delivery_fee
+* int default 0
+정산할 배송비</title></a>
+  <a xlink:href='#deliveries.message'><text id='myshop.deliveries.message' x='1123' y='679'>message</text><title>message
+text
+배송 메시지</title></a>
+  <a xlink:href='#deliveries.created_at'><text id='myshop.deliveries.created_at' x='1123' y='695'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#deliveries.updated_at'><text id='myshop.deliveries.updated_at' x='1123' y='711'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'images' ============= -->
+<rect class='table' x='688' y='152' width='112' height='160' rx='8' ry='8' style='fill:url(#tbg_c8f5bf);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='688.00' y1='180.00' x2='800.00' y2='180.00'/>
+<line class='delim' x1='688.000000' y1='180.000000' x2='800.000000' y2='180.000000' style='stroke:#bcd8b6'/>
+<line class='delim' x1='704.000000' y1='180.000000' x2='704.000000' y2='312.000000' style='stroke:#bcd8b6'/>
+<line class='delim' x1='788.000000' y1='180.000000' x2='788.000000' y2='312.000000' style='stroke:#bcd8b6'/>
+<a xlink:href='#images'><text x='721' y='172'>images</text><title>Table myshop.images</title></a>
+  <use id='nn' x='690' y='189' xlink:href='#nn'/><a xlink:href='#images.id'><use id='pk' x='690' y='188' xlink:href='#pk'/><title>Pk pk_images ( id ) </title></a>
+<a xlink:href='#images.id'><text id='myshop.images.id' x='707' y='199'>id</text><title>id
+* int</title></a>
+  <use id='nn' x='690' y='205' xlink:href='#nn'/><a xlink:href='#images.product_id'><use id='idx' x='690' y='204' xlink:href='#idx'/><title>images_product_id_index ( product_id ) </title></a>
+<a xlink:href='#images.product_id'><text id='myshop.images.product_id' x='707' y='215' onmouseover="hghl(['images_images_product_id_foreign'])" onmouseout="uhghl(['images_images_product_id_foreign'])">product_id</text><title>product_id
+* int
+연결된 상품</title></a>
+<a xlink:href='#images.product_id'><use id='fk' x='788' y='204' xlink:href='#fk'/><title>References products ( product_id -&gt; id ) </title></a>
+  <use id='nn' x='690' y='221' xlink:href='#nn'/><a xlink:href='#images.filename'><text id='myshop.images.filename' x='707' y='231'>filename</text><title>filename
+* varchar(255)
+이미지 파일 이름</title></a>
+  <a xlink:href='#images.bytes'><text id='myshop.images.bytes' x='707' y='247'>bytes</text><title>bytes
+int
+파일 크기 (바이트)</title></a>
+  <a xlink:href='#images.mime'><text id='myshop.images.mime' x='707' y='263'>mime</text><title>mime
+varchar(255)
+마임 타입</title></a>
+  <a xlink:href='#images.created_at'><text id='myshop.images.created_at' x='707' y='279'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#images.updated_at'><text id='myshop.images.updated_at' x='707' y='295'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'members' ============= -->
+<rect class='table' x='96' y='152' width='144' height='192' rx='8' ry='8' style='fill:url(#tbg_f5ddbf);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='96.00' y1='180.00' x2='240.00' y2='180.00'/>
+<line class='delim' x1='96.000000' y1='180.000000' x2='240.000000' y2='180.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='112.000000' y1='180.000000' x2='112.000000' y2='344.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='228.000000' y1='180.000000' x2='228.000000' y2='344.000000' style='stroke:#d8c9b6'/>
+<a xlink:href='#members'><text x='138' y='172'>members</text><title>Table myshop.members</title></a>
+  <use id='nn' x='98' y='189' xlink:href='#nn'/><a xlink:href='#members.id'><use id='pk' x='98' y='188' xlink:href='#pk'/><title>Pk pk_members ( id ) </title></a>
+<a xlink:href='#members.id'><text id='myshop.members.id' x='115' y='199' onmouseover="hghl(['announcements_announcements_member_id_foreign','products_products_member_id_foreign'])" onmouseout="uhghl(['announcements_announcements_member_id_foreign','products_products_member_id_foreign'])">id</text><title>id
+* int</title></a>
+<a xlink:href='#members.id'><use id='ref' x='228' y='188' xlink:href='#ref'/><title>Referred by announcements ( member_id -&gt; id ) 
+Referred by products ( member_id -&gt; id ) </title></a>
+  <use id='nn' x='98' y='205' xlink:href='#nn'/><a xlink:href='#members.name'><text id='myshop.members.name' x='115' y='215'>name</text><title>name
+* varchar(255)
+이름</title></a>
+  <use id='nn' x='98' y='221' xlink:href='#nn'/><a xlink:href='#members.email'><use id='unq' x='98' y='220' xlink:href='#unq'/><title>Unq members_email_unique ( email ) </title></a>
+<a xlink:href='#members.email'><text id='myshop.members.email' x='115' y='231'>email</text><title>email
+* varchar(255)
+이메일</title></a>
+  <a xlink:href='#members.password'><text id='myshop.members.password' x='115' y='247'>password</text><title>password
+varchar(255)
+비밀번호</title></a>
+  <a xlink:href='#members.remember_token'><text id='myshop.members.remember_token' x='115' y='263'>remember_token</text><title>remember_token
+varchar(100)
+로그인 기억 토큰</title></a>
+  <use id='nn' x='98' y='269' xlink:href='#nn'/><a xlink:href='#members.role'><text id='myshop.members.role' x='115' y='279'>role</text><title>role
+* varchar(20) default 'BASE'
+역할</title></a>
+  <a xlink:href='#members.created_at'><text id='myshop.members.created_at' x='115' y='295'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#members.updated_at'><text id='myshop.members.updated_at' x='115' y='311'>updated_at</text><title>updated_at
+timestamp</title></a>
+  <a xlink:href='#members.deleted_at'><text id='myshop.members.deleted_at' x='115' y='327'>deleted_at</text><title>deleted_at
+timestamp</title></a>
+
+<!-- ============= Table 'migrations' ============= -->
+<rect class='table' x='304' y='408' width='96' height='96' rx='8' ry='8' style='fill:url(#tbg_f5ddbf);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='304.00' y1='436.00' x2='400.00' y2='436.00'/>
+<line class='delim' x1='304.000000' y1='436.000000' x2='400.000000' y2='436.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='320.000000' y1='436.000000' x2='320.000000' y2='504.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='388.000000' y1='436.000000' x2='388.000000' y2='504.000000' style='stroke:#d8c9b6'/>
+<a xlink:href='#migrations'><text x='320' y='428'>migrations</text><title>Table myshop.migrations</title></a>
+  <use id='nn' x='306' y='445' xlink:href='#nn'/><a xlink:href='#migrations.id'><use id='pk' x='306' y='444' xlink:href='#pk'/><title>Pk pk_migrations ( id ) </title></a>
+<a xlink:href='#migrations.id'><text id='myshop.migrations.id' x='323' y='455'>id</text><title>id
+* int</title></a>
+  <use id='nn' x='306' y='461' xlink:href='#nn'/><a xlink:href='#migrations.migration'><text id='myshop.migrations.migration' x='323' y='471'>migration</text><title>migration
+* varchar(255)</title></a>
+  <use id='nn' x='306' y='477' xlink:href='#nn'/><a xlink:href='#migrations.batch'><text id='myshop.migrations.batch' x='323' y='487'>batch</text><title>batch
+* int</title></a>
+
+<!-- ============= Table 'order_product' ============= -->
+<rect class='table' x='272' y='920' width='112' height='112' rx='8' ry='8' style='fill:url(#tbg_bfbff5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='272.00' y1='948.00' x2='384.00' y2='948.00'/>
+<line class='delim' x1='272.000000' y1='948.000000' x2='384.000000' y2='948.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='288.000000' y1='948.000000' x2='288.000000' y2='1032.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='372.000000' y1='948.000000' x2='372.000000' y2='1032.000000' style='stroke:#b6b6d8'/>
+<a xlink:href='#order_product'><text x='284' y='940'>order_product</text><title>Table myshop.order_product</title></a>
+  <use id='nn' x='274' y='957' xlink:href='#nn'/><a xlink:href='#order_product.order_id'><use id='idx' x='274' y='956' xlink:href='#idx'/><title>order_product_order_id_index ( order_id ) </title></a>
+<a xlink:href='#order_product.order_id'><text id='myshop.order_product.order_id' x='291' y='967' onmouseover="hghl(['order_product_order_product_order_id_foreign'])" onmouseout="uhghl(['order_product_order_product_order_id_foreign'])">order_id</text><title>order_id
+* int
+주문 ID</title></a>
+<a xlink:href='#order_product.order_id'><use id='fk' x='372' y='956' xlink:href='#fk'/><title>References orders ( order_id -&gt; id ) </title></a>
+  <use id='nn' x='274' y='973' xlink:href='#nn'/><a xlink:href='#order_product.product_id'><use id='idx' x='274' y='972' xlink:href='#idx'/><title>order_product_product_id_index ( product_id ) </title></a>
+<a xlink:href='#order_product.product_id'><text id='myshop.order_product.product_id' x='291' y='983' onmouseover="hghl(['order_product_order_product_product_id_foreign'])" onmouseout="uhghl(['order_product_order_product_product_id_foreign'])">product_id</text><title>product_id
+* int
+상품 ID</title></a>
+<a xlink:href='#order_product.product_id'><use id='fk' x='372' y='972' xlink:href='#fk'/><title>References products ( product_id -&gt; id ) </title></a>
+  <a xlink:href='#order_product.created_at'><text id='myshop.order_product.created_at' x='291' y='999'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#order_product.updated_at'><text id='myshop.order_product.updated_at' x='291' y='1015'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'orders' ============= -->
+<rect class='table' x='48' y='664' width='160' height='192' rx='8' ry='8' style='fill:url(#tbg_bfbff5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='48.00' y1='692.00' x2='208.00' y2='692.00'/>
+<line class='delim' x1='48.000000' y1='692.000000' x2='208.000000' y2='692.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='64.000000' y1='692.000000' x2='64.000000' y2='856.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='196.000000' y1='692.000000' x2='196.000000' y2='856.000000' style='stroke:#b6b6d8'/>
+<a xlink:href='#orders'><text x='106' y='684'>orders</text><title>Table myshop.orders</title></a>
+  <use id='nn' x='50' y='701' xlink:href='#nn'/><a xlink:href='#orders.id'><use id='pk' x='50' y='700' xlink:href='#pk'/><title>Pk pk_orders ( id ) </title></a>
+<a xlink:href='#orders.id'><text id='myshop.orders.id' x='67' y='711' onmouseover="hghl(['deliveries_deliveries_order_id_foreign','order_product_order_product_order_id_foreign','reviews_reviews_order_id_foreign'])" onmouseout="uhghl(['deliveries_deliveries_order_id_foreign','order_product_order_product_order_id_foreign','reviews_reviews_order_id_foreign'])">id</text><title>id
+* int</title></a>
+<a xlink:href='#orders.id'><use id='ref' x='196' y='700' xlink:href='#ref'/><title>Referred by deliveries ( order_id -&gt; id ) 
+Referred by order_product ( order_id -&gt; id ) 
+Referred by reviews ( order_id -&gt; id ) </title></a>
+  <use id='nn' x='50' y='717' xlink:href='#nn'/><a xlink:href='#orders.customer_id'><use id='idx' x='50' y='716' xlink:href='#idx'/><title>orders_customer_id_index ( customer_id ) </title></a>
+<a xlink:href='#orders.customer_id'><text id='myshop.orders.customer_id' x='67' y='727' onmouseover="hghl(['orders_orders_customer_id_foreign'])" onmouseout="uhghl(['orders_orders_customer_id_foreign'])">customer_id</text><title>customer_id
+* int
+주문자</title></a>
+<a xlink:href='#orders.customer_id'><use id='fk' x='196' y='716' xlink:href='#fk'/><title>References customers ( customer_id -&gt; id ) </title></a>
+  <a xlink:href='#orders.billable_amount'><text id='myshop.orders.billable_amount' x='67' y='743'>billable_amount</text><title>billable_amount
+bigint
+전체 구매 금액</title></a>
+  <use id='nn' x='50' y='749' xlink:href='#nn'/><a xlink:href='#orders.billable_delivery_fee'><text id='myshop.orders.billable_delivery_fee' x='67' y='759'>billable_delivery_fee</text><title>billable_delivery_fee
+* int default 0
+청구할 배송비</title></a>
+  <a xlink:href='#orders.payment_method'><text id='myshop.orders.payment_method' x='67' y='775'>payment_method</text><title>payment_method
+varchar(255)
+결제 방법</title></a>
+  <a xlink:href='#orders.checkout_at'><text id='myshop.orders.checkout_at' x='67' y='791'>checkout_at</text><title>checkout_at
+timestamp
+결제 시각</title></a>
+  <a xlink:href='#orders.message'><text id='myshop.orders.message' x='67' y='807'>message</text><title>message
+text
+주문 메시지</title></a>
+  <a xlink:href='#orders.created_at'><text id='myshop.orders.created_at' x='67' y='823'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#orders.updated_at'><text id='myshop.orders.updated_at' x='67' y='839'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'password_resets' ============= -->
+<rect class='table' x='96' y='408' width='112' height='96' rx='8' ry='8' style='fill:url(#tbg_f5ddbf);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='96.00' y1='436.00' x2='208.00' y2='436.00'/>
+<line class='delim' x1='96.000000' y1='436.000000' x2='208.000000' y2='436.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='112.000000' y1='436.000000' x2='112.000000' y2='504.000000' style='stroke:#d8c9b6'/>
+<line class='delim' x1='196.000000' y1='436.000000' x2='196.000000' y2='504.000000' style='stroke:#d8c9b6'/>
+<a xlink:href='#password_resets'><text x='103' y='428'>password_resets</text><title>Table myshop.password_resets</title></a>
+  <use id='nn' x='98' y='445' xlink:href='#nn'/><a xlink:href='#password_resets.email'><use id='idx' x='98' y='444' xlink:href='#idx'/><title>password_resets_email_index ( email ) </title></a>
+<a xlink:href='#password_resets.email'><text id='myshop.password_resets.email' x='115' y='455'>email</text><title>email
+* varchar(255)
+이메일</title></a>
+  <use id='nn' x='98' y='461' xlink:href='#nn'/><a xlink:href='#password_resets.token'><use id='idx' x='98' y='460' xlink:href='#idx'/><title>password_resets_token_index ( token ) </title></a>
+<a xlink:href='#password_resets.token'><text id='myshop.password_resets.token' x='115' y='471'>token</text><title>token
+* varchar(255)
+이메일 소유자 확인을 위한 임시 토큰</title></a>
+  <a xlink:href='#password_resets.created_at'><text id='myshop.password_resets.created_at' x='115' y='487'>created_at</text><title>created_at
+timestamp</title></a>
+
+<!-- ============= Table 'products' ============= -->
+<rect class='table' x='512' y='152' width='112' height='224' rx='8' ry='8' style='fill:url(#tbg_c8f5bf);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='512.00' y1='180.00' x2='624.00' y2='180.00'/>
+<line class='delim' x1='512.000000' y1='180.000000' x2='624.000000' y2='180.000000' style='stroke:#bcd8b6'/>
+<line class='delim' x1='528.000000' y1='180.000000' x2='528.000000' y2='376.000000' style='stroke:#bcd8b6'/>
+<line class='delim' x1='612.000000' y1='180.000000' x2='612.000000' y2='376.000000' style='stroke:#bcd8b6'/>
+<a xlink:href='#products'><text x='540' y='172'>products</text><title>Table myshop.products</title></a>
+  <use id='nn' x='514' y='189' xlink:href='#nn'/><a xlink:href='#products.id'><use id='pk' x='514' y='188' xlink:href='#pk'/><title>Pk pk_products ( id ) </title></a>
+<a xlink:href='#products.id'><text id='myshop.products.id' x='531' y='199' onmouseover="hghl(['images_images_product_id_foreign','order_product_order_product_product_id_foreign','questions_questions_product_id_foreign','wishlists_wishlists_product_id_foreign'])" onmouseout="uhghl(['images_images_product_id_foreign','order_product_order_product_product_id_foreign','questions_questions_product_id_foreign','wishlists_wishlists_product_id_foreign'])">id</text><title>id
+* int</title></a>
+<a xlink:href='#products.id'><use id='ref' x='612' y='188' xlink:href='#ref'/><title>Referred by images ( product_id -&gt; id ) 
+Referred by order_product ( product_id -&gt; id ) 
+Referred by questions ( product_id -&gt; id ) 
+Referred by wishlists ( product_id -&gt; id ) </title></a>
+  <use id='nn' x='514' y='205' xlink:href='#nn'/><a xlink:href='#products.member_id'><use id='idx' x='514' y='204' xlink:href='#idx'/><title>products_member_id_index ( member_id ) </title></a>
+<a xlink:href='#products.member_id'><text id='myshop.products.member_id' x='531' y='215' onmouseover="hghl(['products_products_member_id_foreign'])" onmouseout="uhghl(['products_products_member_id_foreign'])">member_id</text><title>member_id
+* int
+상품 등록 직원</title></a>
+<a xlink:href='#products.member_id'><use id='fk' x='612' y='204' xlink:href='#fk'/><title>References members ( member_id -&gt; id ) </title></a>
+  <use id='nn' x='514' y='221' xlink:href='#nn'/><a xlink:href='#products.category_id'><use id='idx' x='514' y='220' xlink:href='#idx'/><title>products_category_id_index ( category_id ) </title></a>
+<a xlink:href='#products.category_id'><text id='myshop.products.category_id' x='531' y='231' onmouseover="hghl(['products_products_category_id_foreign'])" onmouseout="uhghl(['products_products_category_id_foreign'])">category_id</text><title>category_id
+* int
+연결된 카테고리</title></a>
+<a xlink:href='#products.category_id'><use id='fk' x='612' y='220' xlink:href='#fk'/><title>References categories ( category_id -&gt; id ) </title></a>
+  <use id='nn' x='514' y='237' xlink:href='#nn'/><a xlink:href='#products.title'><text id='myshop.products.title' x='531' y='247'>title</text><title>title
+* varchar(255)
+상품명</title></a>
+  <a xlink:href='#products.sub_title'><text id='myshop.products.sub_title' x='531' y='263'>sub_title</text><title>sub_title
+varchar(255)
+상품명 보조</title></a>
+  <use id='nn' x='514' y='269' xlink:href='#nn'/><a xlink:href='#products.stock'><text id='myshop.products.stock' x='531' y='279'>stock</text><title>stock
+* int default 0
+재고 수량</title></a>
+  <use id='nn' x='514' y='285' xlink:href='#nn'/><a xlink:href='#products.price'><text id='myshop.products.price' x='531' y='295'>price</text><title>price
+* int default 0
+상품 가격</title></a>
+  <a xlink:href='#products.options'><text id='myshop.products.options' x='531' y='311'>options</text><title>options
+text
+상품 옵션</title></a>
+  <a xlink:href='#products.description'><text id='myshop.products.description' x='531' y='327'>description</text><title>description
+text
+상품 설명</title></a>
+  <a xlink:href='#products.created_at'><text id='myshop.products.created_at' x='531' y='343'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#products.updated_at'><text id='myshop.products.updated_at' x='531' y='359'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'questions' ============= -->
+<rect class='table' x='272' y='664' width='144' height='192' rx='8' ry='8' style='fill:url(#tbg_bfbff5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='272.00' y1='692.00' x2='416.00' y2='692.00'/>
+<line class='delim' x1='272.000000' y1='692.000000' x2='416.000000' y2='692.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='288.000000' y1='692.000000' x2='288.000000' y2='856.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='404.000000' y1='692.000000' x2='404.000000' y2='856.000000' style='stroke:#b6b6d8'/>
+<a xlink:href='#questions'><text x='314' y='684'>questions</text><title>Table myshop.questions</title></a>
+  <use id='nn' x='274' y='701' xlink:href='#nn'/><a xlink:href='#questions.id'><use id='pk' x='274' y='700' xlink:href='#pk'/><title>Pk pk_questions ( id ) </title></a>
+<a xlink:href='#questions.id'><text id='myshop.questions.id' x='291' y='711' onmouseover="hghl(['questions_questions_parent_id_foreign'])" onmouseout="uhghl(['questions_questions_parent_id_foreign'])">id</text><title>id
+* int</title></a>
+<a xlink:href='#questions.id'><use id='ref' x='404' y='700' xlink:href='#ref'/><title>Referred by questions ( parent_id -&gt; id ) </title></a>
+  <use id='nn' x='274' y='717' xlink:href='#nn'/><a xlink:href='#questions.questionable_id'><use id='idx' x='274' y='716' xlink:href='#idx'/><title>questions_questionable_id_questionable_type_index ( questionable_id, questionable_type ) questions_questionable_index ( questionable_type, questionable_id ) </title></a>
+<a xlink:href='#questions.questionable_id'><text id='myshop.questions.questionable_id' x='291' y='727'>questionable_id</text><title>questionable_id
+* int</title></a>
+  <use id='nn' x='274' y='733' xlink:href='#nn'/><a xlink:href='#questions.questionable_type'><use id='idx' x='274' y='732' xlink:href='#idx'/><title>questions_questionable_id_questionable_type_index ( questionable_id, questionable_type ) questions_questionable_index ( questionable_type, questionable_id ) </title></a>
+<a xlink:href='#questions.questionable_type'><text id='myshop.questions.questionable_type' x='291' y='743'>questionable_type</text><title>questionable_type
+* varchar(255)</title></a>
+  <use id='nn' x='274' y='749' xlink:href='#nn'/><a xlink:href='#questions.product_id'><use id='idx' x='274' y='748' xlink:href='#idx'/><title>questions_product_id_index ( product_id ) </title></a>
+<a xlink:href='#questions.product_id'><text id='myshop.questions.product_id' x='291' y='759' onmouseover="hghl(['questions_questions_product_id_foreign'])" onmouseout="uhghl(['questions_questions_product_id_foreign'])">product_id</text><title>product_id
+* int
+상품 ID</title></a>
+<a xlink:href='#questions.product_id'><use id='fk' x='404' y='748' xlink:href='#fk'/><title>References products ( product_id -&gt; id ) </title></a>
+  <a xlink:href='#questions.parent_id'><use id='idx' x='274' y='764' xlink:href='#idx'/><title>questions_parent_id_index ( parent_id ) </title></a>
+<a xlink:href='#questions.parent_id'><text id='myshop.questions.parent_id' x='291' y='775' onmouseover="hghl(['questions_questions_parent_id_foreign'])" onmouseout="uhghl(['questions_questions_parent_id_foreign'])">parent_id</text><title>parent_id
+int
+질문 쓰레드 부모</title></a>
+<a xlink:href='#questions.parent_id'><use id='fk' x='404' y='764' xlink:href='#fk'/><title>References questions ( parent_id -&gt; id ) </title></a>
+  <use id='nn' x='274' y='781' xlink:href='#nn'/><a xlink:href='#questions.type'><use id='idx' x='274' y='780' xlink:href='#idx'/><title>questions_type_index ( type ) </title></a>
+<a xlink:href='#questions.type'><text id='myshop.questions.type' x='291' y='791'>type</text><title>type
+* varchar(10) default 'QUESTION'</title></a>
+  <a xlink:href='#questions.content'><text id='myshop.questions.content' x='291' y='807'>content</text><title>content
+text
+질문 또는 답변 본문</title></a>
+  <a xlink:href='#questions.created_at'><text id='myshop.questions.created_at' x='291' y='823'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#questions.updated_at'><text id='myshop.questions.updated_at' x='291' y='839'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'reviews' ============= -->
+<rect class='table' x='48' y='920' width='112' height='160' rx='8' ry='8' style='fill:url(#tbg_bfbff5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='48.00' y1='948.00' x2='160.00' y2='948.00'/>
+<line class='delim' x1='48.000000' y1='948.000000' x2='160.000000' y2='948.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='64.000000' y1='948.000000' x2='64.000000' y2='1080.000000' style='stroke:#b6b6d8'/>
+<line class='delim' x1='148.000000' y1='948.000000' x2='148.000000' y2='1080.000000' style='stroke:#b6b6d8'/>
+<a xlink:href='#reviews'><text x='79' y='940'>reviews</text><title>Table myshop.reviews</title></a>
+  <use id='nn' x='50' y='957' xlink:href='#nn'/><a xlink:href='#reviews.id'><use id='pk' x='50' y='956' xlink:href='#pk'/><title>Pk pk_reviews ( id ) </title></a>
+<a xlink:href='#reviews.id'><text id='myshop.reviews.id' x='67' y='967'>id</text><title>id
+* int</title></a>
+  <use id='nn' x='50' y='973' xlink:href='#nn'/><a xlink:href='#reviews.customer_id'><use id='idx' x='50' y='972' xlink:href='#idx'/><title>reviews_customer_id_index ( customer_id ) </title></a>
+<a xlink:href='#reviews.customer_id'><text id='myshop.reviews.customer_id' x='67' y='983' onmouseover="hghl(['reviews_reviews_customer_id_foreign'])" onmouseout="uhghl(['reviews_reviews_customer_id_foreign'])">customer_id</text><title>customer_id
+* int
+리뷰어</title></a>
+<a xlink:href='#reviews.customer_id'><use id='fk' x='148' y='972' xlink:href='#fk'/><title>References customers ( customer_id -&gt; id ) </title></a>
+  <use id='nn' x='50' y='989' xlink:href='#nn'/><a xlink:href='#reviews.order_id'><use id='idx' x='50' y='988' xlink:href='#idx'/><title>reviews_order_id_index ( order_id ) </title></a>
+<a xlink:href='#reviews.order_id'><text id='myshop.reviews.order_id' x='67' y='999' onmouseover="hghl(['reviews_reviews_order_id_foreign'])" onmouseout="uhghl(['reviews_reviews_order_id_foreign'])">order_id</text><title>order_id
+* int
+주문 번호</title></a>
+<a xlink:href='#reviews.order_id'><use id='fk' x='148' y='988' xlink:href='#fk'/><title>References orders ( order_id -&gt; id ) </title></a>
+  <a xlink:href='#reviews.content'><text id='myshop.reviews.content' x='67' y='1015'>content</text><title>content
+text
+리뷰 본문</title></a>
+  <a xlink:href='#reviews.rating'><text id='myshop.reviews.rating' x='67' y='1031'>rating</text><title>rating
+tinyint
+평점</title></a>
+  <a xlink:href='#reviews.created_at'><text id='myshop.reviews.created_at' x='67' y='1047'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#reviews.updated_at'><text id='myshop.reviews.updated_at' x='67' y='1063'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Table 'wishlists' ============= -->
+<rect class='table' x='896' y='504' width='112' height='128' rx='8' ry='8' style='fill:url(#tbg_bfd4f5);'/>
+<line style='stroke:#d8b6b6;stroke-width:1;shape-rendering:crispEdges;' x1='896.00' y1='532.00' x2='1008.00' y2='532.00'/>
+<line class='delim' x1='896.000000' y1='532.000000' x2='1008.000000' y2='532.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='912.000000' y1='532.000000' x2='912.000000' y2='632.000000' style='stroke:#b6c3d8'/>
+<line class='delim' x1='996.000000' y1='532.000000' x2='996.000000' y2='632.000000' style='stroke:#b6c3d8'/>
+<a xlink:href='#wishlists'><text x='925' y='524'>wishlists</text><title>Table myshop.wishlists</title></a>
+  <use id='nn' x='898' y='541' xlink:href='#nn'/><a xlink:href='#wishlists.id'><use id='pk' x='898' y='540' xlink:href='#pk'/><title>Pk pk_wishlists ( id ) </title></a>
+<a xlink:href='#wishlists.id'><text id='myshop.wishlists.id' x='915' y='551'>id</text><title>id
+* int</title></a>
+  <use id='nn' x='898' y='557' xlink:href='#nn'/><a xlink:href='#wishlists.customer_id'><use id='idx' x='898' y='556' xlink:href='#idx'/><title>wishlists_customer_id_index ( customer_id ) </title></a>
+<a xlink:href='#wishlists.customer_id'><text id='myshop.wishlists.customer_id' x='915' y='567' onmouseover="hghl(['wishlists_wishlists_customer_id_foreign'])" onmouseout="uhghl(['wishlists_wishlists_customer_id_foreign'])">customer_id</text><title>customer_id
+* int
+잠재 구매자</title></a>
+<a xlink:href='#wishlists.customer_id'><use id='fk' x='996' y='556' xlink:href='#fk'/><title>References customers ( customer_id -&gt; id ) </title></a>
+  <use id='nn' x='898' y='573' xlink:href='#nn'/><a xlink:href='#wishlists.product_id'><use id='idx' x='898' y='572' xlink:href='#idx'/><title>wishlists_product_id_index ( product_id ) </title></a>
+<a xlink:href='#wishlists.product_id'><text id='myshop.wishlists.product_id' x='915' y='583' onmouseover="hghl(['wishlists_wishlists_product_id_foreign'])" onmouseout="uhghl(['wishlists_wishlists_product_id_foreign'])">product_id</text><title>product_id
+* int
+상품 ID</title></a>
+<a xlink:href='#wishlists.product_id'><use id='fk' x='996' y='572' xlink:href='#fk'/><title>References products ( product_id -&gt; id ) </title></a>
+  <a xlink:href='#wishlists.created_at'><text id='myshop.wishlists.created_at' x='915' y='599'>created_at</text><title>created_at
+timestamp</title></a>
+  <a xlink:href='#wishlists.updated_at'><text id='myshop.wishlists.updated_at' x='915' y='615'>updated_at</text><title>updated_at
+timestamp</title></a>
+
+<!-- ============= Callout ============= -->
+<rect class='callout' x='512' y='32' width='608' height='117' rx='16' ry='16'  />
+<text x='536' y='32' class='callout'>
+    <tspan x='516' dx='8' dy='16.80'>Use the Relational Data Browse for exploring data from multiple tables at a time&#46;</tspan>
+    <tspan x='516' dx='8' dy='16.80'>Tables should be bind by foreign keys &#45; if they are not you can create VIRTUAL foreign keys in the layout&#46; </tspan>
+    <tspan x='516' dx='8' dy='16.80'>Virtual foreign keys will be saved to project file&#46;</tspan>
+    <tspan x='516' dx='8' dy='16.80'> </tspan>
+    <tspan x='516' dx='8' dy='16.80'>Descend into children tables by pressing the foreign key arrow icon near title&#46;</tspan>
+    <tspan x='516' dx='8' dy='16.80'>Right&#45;click column headers in browse tables to set filters&#46;</tspan>
+</text>
+</g></svg></div>
+
+
+<br/><br/>
+<div class='section-header'><a name='addresses'><h2>Table addresses</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='addresses.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='addresses.customer_id'>customer&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 주소 소유자 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='addresses.zipcode'>zipcode</a></td>
+		<td> varchar&#40; 10 &#41;   </td>
+		<td> 우편번호 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='addresses.address'>address</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 주소 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='addresses.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='addresses.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;addresses</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>addresses&#95;customer&#95;id&#95;index</td>
+		<td> ON customer&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>addresses_customer_id_foreign</td>
+		<td > ( customer&#95;id ) ref <a href='#customers'>customers</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='announcements'><h2>Table announcements</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='announcements.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='announcements.member_id'>member&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 공지 작성자 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='announcements.content'>content</a></td>
+		<td> text   </td>
+		<td> 공지 본문 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='announcements.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='announcements.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;announcements</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>announcements&#95;member&#95;id&#95;index</td>
+		<td> ON member&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>announcements_member_id_foreign</td>
+		<td > ( member&#95;id ) ref <a href='#members'>members</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='categories'><h2>Table categories</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='categories.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td> 카테고리 이름 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='categories.name'>name</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='categories.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='categories.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;categories</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='customers'><h2>Table customers</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='customers.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customers.name'>name</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 사용자 이름 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='customers.email'>email</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 이메일 &#40;로그인에 사용됨&#41; </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.password'>password</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 비밀번호 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.remember_token'>remember&#95;token</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td> 로그인 기억 토큰 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.zipcode'>zipcode</a></td>
+		<td> varchar&#40; 10 &#41;   </td>
+		<td> 우편번호 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.address'>address</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 주소 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.phone_number'>phone&#95;number</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td> 전화번호 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.date_of_birth'>date&#95;of&#95;birth</a></td>
+		<td> date   </td>
+		<td> 생년월일 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.gender'>gender</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 성별 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.profile'>profile</a></td>
+		<td> text   </td>
+		<td> 자기 소개 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customers.points'>points</a></td>
+		<td> int   DEFAULT 0 </td>
+		<td> 포인트 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customers.deleted_at'>deleted&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;customers</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>customers&#95;email&#95;unique</td>
+		<td> ON email</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='deliveries'><h2>Table deliveries</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='deliveries.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='deliveries.order_id'>order&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 주문 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='deliveries.address_id'>address&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 배송 목적지 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='deliveries.weight'>weight</a></td>
+		<td> double   DEFAULT 0.00 </td>
+		<td> 무게 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='deliveries.package_type'>package&#95;type</a></td>
+		<td> varchar&#40; 255 &#41;   DEFAULT '포장재' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='deliveries.status'>status</a></td>
+		<td> varchar&#40; 20 &#41;   DEFAULT 'SUBMITTED' </td>
+		<td> 배송상태 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='deliveries.agent'>agent</a></td>
+		<td> varchar&#40; 20 &#41;   DEFAULT 'EMS' </td>
+		<td> 택배사 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='deliveries.payable_delivery_fee'>payable&#95;delivery&#95;fee</a></td>
+		<td> int   DEFAULT 0 </td>
+		<td> 정산할 배송비 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='deliveries.message'>message</a></td>
+		<td> text   </td>
+		<td> 배송 메시지 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='deliveries.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='deliveries.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;deliveries</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>deliveries&#95;address&#95;id&#95;index</td>
+		<td> ON address&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>deliveries&#95;order&#95;id&#95;index</td>
+		<td> ON order&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>deliveries_address_id_foreign</td>
+		<td > ( address&#95;id ) ref <a href='#addresses'>addresses</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>deliveries_order_id_foreign</td>
+		<td > ( order&#95;id ) ref <a href='#orders'>orders</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='images'><h2>Table images</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='images.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='images.product_id'>product&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 연결된 상품 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='images.filename'>filename</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 이미지 파일 이름 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='images.bytes'>bytes</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 파일 크기 &#40;바이트&#41; </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='images.mime'>mime</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 마임 타입 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='images.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='images.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;images</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>images&#95;product&#95;id&#95;index</td>
+		<td> ON product&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>images_product_id_foreign</td>
+		<td > ( product&#95;id ) ref <a href='#products'>products</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='members'><h2>Table members</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='members.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='members.name'>name</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 이름 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg></td>
+		<td><a name='members.email'>email</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 이메일 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='members.password'>password</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 비밀번호 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='members.remember_token'>remember&#95;token</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td> 로그인 기억 토큰 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='members.role'>role</a></td>
+		<td> varchar&#40; 20 &#41;   DEFAULT 'BASE' </td>
+		<td> 역할 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='members.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='members.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='members.deleted_at'>deleted&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;members</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>members&#95;email&#95;unique</td>
+		<td> ON email</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='migrations'><h2>Table migrations</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='migrations.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='migrations.migration'>migration</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='migrations.batch'>batch</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;migrations</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='order_product'><h2>Table order_product</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='order_product.order_id'>order&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 주문 ID </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='order_product.product_id'>product&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 상품 ID </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order_product.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order_product.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>order&#95;product&#95;order&#95;id&#95;index</td>
+		<td> ON order&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>order&#95;product&#95;product&#95;id&#95;index</td>
+		<td> ON product&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>order_product_order_id_foreign</td>
+		<td > ( order&#95;id ) ref <a href='#orders'>orders</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>order_product_product_id_foreign</td>
+		<td > ( product&#95;id ) ref <a href='#products'>products</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='orders'><h2>Table orders</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='orders.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='orders.customer_id'>customer&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 주문자 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='orders.billable_amount'>billable&#95;amount</a></td>
+		<td> bigint   </td>
+		<td> 전체 구매 금액 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='orders.billable_delivery_fee'>billable&#95;delivery&#95;fee</a></td>
+		<td> int   DEFAULT 0 </td>
+		<td> 청구할 배송비 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='orders.payment_method'>payment&#95;method</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 결제 방법 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='orders.checkout_at'>checkout&#95;at</a></td>
+		<td> timestamp   </td>
+		<td> 결제 시각 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='orders.message'>message</a></td>
+		<td> text   </td>
+		<td> 주문 메시지 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='orders.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='orders.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;orders</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>orders&#95;customer&#95;id&#95;index</td>
+		<td> ON customer&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>orders_customer_id_foreign</td>
+		<td > ( customer&#95;id ) ref <a href='#customers'>customers</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='password_resets'><h2>Table password_resets</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='password_resets.email'>email</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 이메일 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='password_resets.token'>token</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 이메일 소유자 확인을 위한 임시 토큰 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='password_resets.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>password&#95;resets&#95;email&#95;index</td>
+		<td> ON email</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>password&#95;resets&#95;token&#95;index</td>
+		<td> ON token</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='products'><h2>Table products</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='products.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='products.member_id'>member&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 상품 등록 직원 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='products.category_id'>category&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 연결된 카테고리 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='products.title'>title</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 상품명 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='products.sub_title'>sub&#95;title</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td> 상품명 보조 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='products.stock'>stock</a></td>
+		<td> int   DEFAULT 0 </td>
+		<td> 재고 수량 </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='products.price'>price</a></td>
+		<td> int   DEFAULT 0 </td>
+		<td> 상품 가격 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='products.options'>options</a></td>
+		<td> text   </td>
+		<td> 상품 옵션 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='products.description'>description</a></td>
+		<td> text   </td>
+		<td> 상품 설명 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='products.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='products.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;products</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>products&#95;category&#95;id&#95;index</td>
+		<td> ON category&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>products&#95;member&#95;id&#95;index</td>
+		<td> ON member&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>products_category_id_foreign</td>
+		<td > ( category&#95;id ) ref <a href='#categories'>categories</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>products_member_id_foreign</td>
+		<td > ( member&#95;id ) ref <a href='#members'>members</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='questions'><h2>Table questions</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='questions.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='questions.questionable_id'>questionable&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='questions.questionable_type'>questionable&#95;type</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='questions.product_id'>product&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 상품 ID </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='questions.parent_id'>parent&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 질문 쓰레드 부모 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg></td>
+		<td><a name='questions.type'>type</a></td>
+		<td> varchar&#40; 10 &#41;   DEFAULT 'QUESTION' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='questions.content'>content</a></td>
+		<td> text   </td>
+		<td> 질문 또는 답변 본문 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='questions.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='questions.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;questions</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>questions&#95;parent&#95;id&#95;index</td>
+		<td> ON parent&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>questions&#95;product&#95;id&#95;index</td>
+		<td> ON product&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>questions&#95;questionable&#95;id&#95;questionable&#95;type&#95;index</td>
+		<td> ON questionable&#95;id&#44; questionable&#95;type</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>questions&#95;questionable&#95;index</td>
+		<td> ON questionable&#95;type&#44; questionable&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>questions&#95;type&#95;index</td>
+		<td> ON type</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>questions_product_id_foreign</td>
+		<td > ( product&#95;id ) ref <a href='#products'>products</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>questions_parent_id_foreign</td>
+		<td > ( parent&#95;id ) ref <a href='#questions'>questions</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='reviews'><h2>Table reviews</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='reviews.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='reviews.customer_id'>customer&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 리뷰어 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='reviews.order_id'>order&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 주문 번호 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='reviews.content'>content</a></td>
+		<td> text   </td>
+		<td> 리뷰 본문 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='reviews.rating'>rating</a></td>
+		<td> tinyint   </td>
+		<td> 평점 </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='reviews.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='reviews.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;reviews</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>reviews&#95;customer&#95;id&#95;index</td>
+		<td> ON customer&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>reviews&#95;order&#95;id&#95;index</td>
+		<td> ON order&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>reviews_customer_id_foreign</td>
+		<td > ( customer&#95;id ) ref <a href='#customers'>customers</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>reviews_order_id_foreign</td>
+		<td > ( order&#95;id ) ref <a href='#orders'>orders</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='wishlists'><h2>Table wishlists</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='wishlists.id'>id</a></td>
+		<td> int UNSIGNED  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='wishlists.customer_id'>customer&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 잠재 구매자 </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='wishlists.product_id'>product&#95;id</a></td>
+		<td> int UNSIGNED   </td>
+		<td> 상품 ID </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='wishlists.created_at'>created&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='wishlists.updated_at'>updated&#95;at</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;wishlists</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>wishlists&#95;customer&#95;id&#95;index</td>
+		<td> ON customer&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>wishlists&#95;product&#95;id&#95;index</td>
+		<td> ON product&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>wishlists_customer_id_foreign</td>
+		<td > ( customer&#95;id ) ref <a href='#customers'>customers</a> (id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>wishlists_product_id_foreign</td>
+		<td > ( product&#95;id ) ref <a href='#products'>products</a> (id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<p align='right'><a href='http://www.dbschema.com' style='color:#aaa'>Powered by DbSchema</a></p></body></html>
