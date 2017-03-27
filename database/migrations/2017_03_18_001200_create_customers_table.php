@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('address')->nullable()->comment('주소');
             $table->string('phone_number', 20)->nullable()->comment('전화번호');
             $table->date('date_of_birth')->nullable()->comment('생년월일');
-            $table->string('gender')->nullable()->comment('성별');
+            $table->string('gender', 10)->nullable()->comment('성별');
             $table->text('profile')->nullable()->comment('자기 소개');
             $table->integer('points')->default(0)->comment('포인트');
             $table->timestamps();

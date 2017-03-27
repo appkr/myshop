@@ -60,6 +60,15 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest(route('login'));
+        return redirect()->guest(
+            route($this->getRouteName($exception))
+        );
+    }
+
+    private function getRouteName(AuthenticationException $exception)
+    {
+        return ($exception->guards()[0] == 'members')
+            ? 'members.login'
+            : 'customers.login';
     }
 }

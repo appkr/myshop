@@ -50,6 +50,20 @@ class Customer extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'customer';
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'zipcode',
+        'address',
+        'phone_number',
+        'date_of_birth',
+        'gender',
+        'profile',
+    ];
+
     /* RELATIONSHIPS */
 
     public function orders()

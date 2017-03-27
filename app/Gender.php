@@ -10,6 +10,6 @@ use App\Support\BaseEnum;
  */
 final class Gender extends BaseEnum
 {
-    const MALE = 'M';
-    const FEMALE = 'F';
+    const MALE = 'MALE';
+    const FEMALE = 'FEMALE';
 }
