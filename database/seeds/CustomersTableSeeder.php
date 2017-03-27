@@ -9,6 +9,11 @@ class CustomersTableSeeder extends Seeder
     {
         Customer::truncate();
 
+        factory(Customer::class)->create([
+            'name' => 'Customer',
+            'email' => 'customer@example.com',
+        ]);
+
         factory(Customer::class, 10)->create();
     }
 }
