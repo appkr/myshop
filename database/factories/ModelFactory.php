@@ -17,11 +17,14 @@ use App\Question;
 use App\QuestionType;
 use App\Review;
 use App\Role;
+use App\Support\KoreanLoremProvider;
 use App\Wishlist;
 use Faker\Factory;
 
-/** @var \Faker\Generator $factory */
+/** @var \Faker\Generator $faker */
 $faker = Factory::create('ko_KR');
+$koreanProvider = new KoreanLoremProvider($faker);
+$faker->addProvider($koreanProvider);
 
 $factory->define(Member::class, function () use ($faker) {
     $roles = Role::toArray();
@@ -58,11 +61,11 @@ $factory->define(Product::class, function () use ($faker) {
     return [
         'category_id' => $category->id,
         'title' => $category->name . rand(1, 100),
-        'sub_title' => $faker->sentence,
+        'sub_title' => $faker->korSentence(),
         'stock' => rand(10, 100),
         'price' => rand(250000, 3000000),
-        'options' => json_encode([str_random(10) => $faker->sentence(2)]),
-        'description' => $faker->paragraph,
+        'options' => json_encode([str_random(10) => $faker->korParagraph()]),
+        'description' => $faker->korParagraph(),
     ];
 });
 
@@ -79,7 +82,7 @@ $factory->define(Order::class, function () use ($faker) {
         'billable_delivery_fee' => $billableDeliveryFee,
         'payment_method' => $faker->randomElement(PaymentMethod::toArray()),
         'checkout_at' => $faker->dateTimeBetween('-1 years', 'yesterday'),
-        'message' => $faker->sentence,
+        'message' => $faker->korSentence(),
     ];
 });
 
@@ -108,7 +111,7 @@ $factory->define(Review::class, function () use ($faker) {
 
     return [
         'order_id' => $order->id,
-        'content' => $faker->paragraph,
+        'content' => $faker->korParagraph(),
         'rating' => rand(1, 5),
     ];
 });
@@ -120,7 +123,7 @@ $factory->define(Question::class, function () use ($faker) {
         'product_id' => $product->id,
         'parent_id' => null,
         'type' => $faker->randomElement(QuestionType::toArray()),
-        'content' => $faker->paragraph,
+        'content' => $faker->korParagraph(),
     ];
 });
 
@@ -134,6 +137,6 @@ $factory->define(Wishlist::class, function () use ($faker) {
 
 $factory->define(Announcement::class, function () use ($faker) {
     return [
-        'content' => $faker->paragraph,
+        'content' => $faker->korParagraph(),
     ];
 });
