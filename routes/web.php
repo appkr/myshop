@@ -5,3 +5,7 @@ Route::get('/', function () {
 });
 
 Route::get('health', 'HealthController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
