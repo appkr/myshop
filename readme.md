@@ -72,9 +72,9 @@ AWS ECS(Elastic Container Service) 배포 환경을 포함하고 있습니다. E
 # Docker version 1.13.0, build 49bf474
 ```
 
-위 링크를 방문하지 않고도 더 편하게 설치하는 방법은 다음과 같습니다.
-
 #### 3.1.1. OS X
+
+OS X에서는 3.1의 링크를 방문하지 않고도 Homebrew를 이용해서 더 편리하게 도커를 설치할 수 있습니다.
 
 ```bash
 ~/any $ brew cask install docker --appdir=/Applications
@@ -83,6 +83,10 @@ AWS ECS(Elastic Container Service) 배포 환경을 포함하고 있습니다. E
 #### 3.1.2. Ubuntu Linux
 
 [별도 문서](docs/DOCKER-UBUNTU-HOT-TO.md)에서 설명합니다.
+
+#### 3.1.3. Windows
+
+[별도 문서](docs/DOCKER-WINDOWS-HOT-TO.md)에서 설명합니다.
 
 ### 3.2. 이미지 빌드
 
