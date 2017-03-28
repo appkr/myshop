@@ -46,7 +46,7 @@ ubuntu@server:~$ docker --version
 
 `8000`, `9001`, `33060`, `63790` 포트를 열었습니다.
  
-![](docs/docker-ubuntu-1.png)
+![](docker-ubuntu-1.png)
 
 ### 2.2. 예제 프로젝트 설치
 
@@ -89,10 +89,10 @@ ubuntu@server:~/myshop$ sudo docker exec -it myshop-local /bin/bash /init.sh
 ubuntu@server:~/myshop$ sudo docker exec -it myshop-local php artisan migrate --seed
 ```
 
-![](docs/docker-ubuntu-2.png)
+![](docker-ubuntu-2.png)
 
-![](docs/docker-ubuntu-3.png)
+![](docker-ubuntu-3.png)
 
-![](docs/docker-ubuntu-4.png)
+![](docker-ubuntu-4.png)
 
-![](docs/docker-ubuntu-5.png)
+![](docker-ubuntu-5.png)
