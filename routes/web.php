@@ -57,6 +57,10 @@ Route::prefix('customers')->group(function () {
         'register',
         'Auth\Customer\RegisterController@register'
     )->name('customers.register.submit');
+    Route::get(
+        'social/{provider}',
+        'Auth\Customer\SocialController@execute'
+    )->name('customers.social.login');
 });
 
 Route::prefix('members')->group(function () {
