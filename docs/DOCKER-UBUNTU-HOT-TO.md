@@ -28,7 +28,7 @@ ubuntu@server:~$ sudo add-apt-repository \
    stable"
 ```
 
-도커를 설치합니다.
+도커를 설치하고, 현재 셸 사용자를 `docker` 그룹에 추가합니다.
 
 ```bash
 ubuntu@server:~$ sudo apt-get update
@@ -36,6 +36,11 @@ ubuntu@server:~$ sudo apt-get install docker-ce
 ubuntu@server:~$ apt-cache madison docker-ce
 ubuntu@server:~$ docker --version
 # Docker version 17.03.0-ce, build 3a232c8
+ubuntu@server:~$ sudo service docker status
+# ● docker.service - Docker Application Container Engine
+#   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+#   Active: active (running) since Tue 2017-03-28 01:47:58 UTC; 21min ago
+ubuntu@server:~$ sudo gpasswd -a ${USER} docker
 ```
 
 ## 2. 개발용 도커 이미지 구동
