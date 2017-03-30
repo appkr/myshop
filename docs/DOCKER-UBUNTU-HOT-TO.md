@@ -49,7 +49,7 @@ ubuntu@server:~$ sudo gpasswd -a ${USER} docker
 
 ### 2.1. Ubuntu 인스턴스의 방화벽 설정
 
-`8000`, `9001`, `33060`, `63790` 포트를 열었습니다.
+`8000`, `9001`, `3306`, `6379` 포트를 열었습니다.
  
 ![](docker-ubuntu-1.png)
 

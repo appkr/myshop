@@ -19,8 +19,8 @@ else
         --publish 8000:80 \
         --publish 9001:9001 \
         --publish 9999:9999 \
-        --publish 33060:3306 \
-        --publish 63790:6379 \
+        --publish 3306:3306 \
+        --publish 6379:6379 \
         --volume `pwd`:/var/www/html \
         --volume `pwd`/docker-mount-point:/var/lib/mysql \
         ${IMAGE_NAME}

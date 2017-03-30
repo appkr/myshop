@@ -127,8 +127,8 @@ OS X에서는 3.1의 링크를 방문하지 않고도 Homebrew를 이용해서 �
     --publish 8000:80 \
     --publish 9001:9001 \
     --publish 9999:9999 \
-    --publish 33060:3306 \
-    --publish 63790:6379 \
+    --publish 3306:3306 \
+    --publish 6379:6379 \
     --volume `pwd`:/var/www/html \
     --volume `pwd`/docker-mount-point:/var/lib/mysql \
     myshop:local
@@ -144,7 +144,7 @@ b8d32d2783e1    myshop:local         "docker-php-entryp..."   16 seconds ago    
 ~/any $ docker exec -it myshop-local /bin/bash /init.sh
 ```
 
-브라우저에서 `http://localhost:8000`을 열어 작동을 확인합니다. MySQL 클라이언트에서 `127.0.0.1:33060`로 접속해 봅니다.
+브라우저에서 `http://localhost:8000`을 열어 작동을 확인합니다. MySQL 클라이언트에서 `127.0.0.1:3306`으로 접속해 봅니다.
 
 > 이미지 다운로드와 컨테이너 실행을 간소화하기 위해, 이 저장소에는 다음 헬퍼 스크립트를 포함하고 있습니다.
 >
@@ -179,7 +179,7 @@ b8d32d2783e1    myshop:local         "docker-php-entryp..."   16 seconds ago    
 
 ### 3.5. 문제 해결
 
-호스트 컴퓨터에서 8000, 33060, 63790 포트를 이미 사용하고 있다면 다른 포트로 바인딩합니다. 혹, 포트 충돌이 발생하면 작동 중인 컨테이너를 삭제하고 다시 실행합니다.
+호스트 컴퓨터에서 8000, 3306, 6379 포트를 이미 사용하고 있다면 다른 포트로 바인딩합니다. 혹, 포트 충돌이 발생하면 작동 중인 컨테이너를 삭제하고 다시 실행합니다.
 
 ```bash
 ~/any $ docker stop myshop-local && docker rm myshop-local
@@ -230,8 +230,8 @@ Service|Connection Info
 ---|---
 Web|`http://localhost:8000`
 Supervisor|`http://localhost:9001` (HTTP Basic Auth => `homestead`/`secret`)
-MySQL|`$ mysql -h127.0.0.1 -P33060 -uroot -psecret`
-Redis|`$ redis-cli -h 127.0.0.1 -p 63790`
+MySQL|`$ mysql -h127.0.0.1 -P3306 -uroot -psecret`
+Redis|`$ redis-cli -h 127.0.0.1 -p 6379`
 Xdebug|key: `IDEA`, port: `9999`
 
 ### 3.8. 유틸리티 함수
