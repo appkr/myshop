@@ -2,6 +2,8 @@
 
 라라벨 학습용 쇼핑몰 프로젝트입니다.
 
+> 아래 콘솔 명령 블록은 모두 경로를 가지고 있습니다. `~/myshop`으로 시작하는 명령은 모두 프로젝트 폴더에서 실행해야 하며, `~/any`로 시작하는 명령은 아무곳에서나 실행해도 무방합니다.
+
 ## 1. 프로젝트 복제
 
 프로젝트를 복제합니다.
@@ -70,9 +72,9 @@ AWS ECS(Elastic Container Service) 배포 환경을 포함하고 있습니다. E
 # Docker version 1.13.0, build 49bf474
 ```
 
-위 링크를 방문하지 않고도 더 편하게 설치하는 방법은 다음과 같습니다.
-
 #### 3.1.1. OS X
+
+OS X에서는 3.1의 링크를 방문하지 않고도 Homebrew를 이용해서 더 편리하게 도커를 설치할 수 있습니다.
 
 ```bash
 ~/any $ brew cask install docker --appdir=/Applications
@@ -80,9 +82,11 @@ AWS ECS(Elastic Container Service) 배포 환경을 포함하고 있습니다. E
 
 #### 3.1.2. Ubuntu Linux
 
-```bash
-~/any $ sudo apt update && sudo apt install docker
-```
+[별도 문서](docs/DOCKER-UBUNTU-HOT-TO.md)에서 설명합니다.
+
+#### 3.1.3. Windows
+
+[별도 문서](docs/DOCKER-WINDOWS-HOT-TO.md)에서 설명합니다.
 
 ### 3.2. 이미지 빌드
 
@@ -118,7 +122,7 @@ AWS ECS(Elastic Container Service) 배포 환경을 포함하고 있습니다. E
 컨테이너 이름은 `myshop-local`이라 하겠습니다.
 
 ```bash
-~/any $ docker run --detach \
+~/myshop $ docker run --detach \
     --name myshop-local \
     --publish 8000:80 \
     --publish 9001:9001 \
@@ -141,6 +145,20 @@ b8d32d2783e1    myshop:local         "docker-php-entryp..."   16 seconds ago    
 ```
 
 브라우저에서 `http://localhost:8000`을 열어 작동을 확인합니다. MySQL 클라이언트에서 `127.0.0.1:33060`로 접속해 봅니다.
+
+> 이미지 다운로드와 컨테이너 실행을 간소화하기 위해, 이 저장소에는 다음 헬퍼 스크립트를 포함하고 있습니다.
+>
+> 이미지 다운로드(로컬 컴퓨터에 이미지가 없으면) 및 컨테이너 실행합니다. 
+> 
+> ```bash
+> ~/myshop $ bash start.sh
+> ```
+> 
+> 컨테이너를 중지합니다.
+> 
+> ```bash
+> ~/myshop $ bash stop.sh
+> ```
 
 ### 3.4. 컨테이너 삭제
 

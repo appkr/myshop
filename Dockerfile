@@ -52,6 +52,9 @@ RUN a2dissite 000-default \
     && a2ensite server \
     && a2enmod rewrite deflate headers
 
+RUN usermod -u 1000 www-data \
+    && groupmod -g 1000 www-data
+
 #-------------------------------------------------------------------------------
 # Enable Application
 #-------------------------------------------------------------------------------
