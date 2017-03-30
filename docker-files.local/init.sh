@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+chmod -R 775 storage bootstrap/cache
+chown -R www-data:www-data storage bootstrap/cache
+
 if [ ! -d $MYSQL_DATA_DIR/mysql ]; then
     /usr/bin/supervisorctl stop mysql
 
