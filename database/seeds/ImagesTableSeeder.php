@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder;
  */
 class ImagesTableSeeder extends Seeder
 {
-    const IMAGE_DIR = 'product_images';
+    const IMAGE_DIR = 'app/public/product_images';
 
     public function __construct()
     {
@@ -35,7 +35,7 @@ class ImagesTableSeeder extends Seeder
 
     private function prepareDirectory()
     {
-        $imageDir = storage_path('app/' . self::IMAGE_DIR);
+        $imageDir = storage_path(self::IMAGE_DIR);
 
         if (File::isDirectory($imageDir)) {
             File::deleteDirectory($imageDir);
@@ -46,7 +46,7 @@ class ImagesTableSeeder extends Seeder
 
     private function downloadFile()
     {
-        $imageDir = storage_path('app/' . self::IMAGE_DIR);
+        $imageDir = storage_path(self::IMAGE_DIR);
         $path = $this->faker->image($imageDir);
 
         $dto = new stdClass;

@@ -18,6 +18,12 @@ class ProductsTableSeeder extends Seeder
             $md->products()->save(
                 factory(Product::class)->make()
             );
+            $md->products()->save(
+                factory(Product::class)->make()
+            );
+            $md->products()->save(
+                factory(Product::class)->make()
+            );
         });
     }
 }

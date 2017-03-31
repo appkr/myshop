@@ -26,10 +26,28 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Image extends Model
 {
+    protected $fillable = [
+        'product_id',
+        'filename',
+        'bytes',
+        'mime',
+    ];
+
+    protected $appends = [
+        'url',
+    ];
+
     /* RELATIONSHIPS */
 
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /* ACCESSOR */
+
+    public function getUrlAttribute()
+    {
+        return asset("storage/product_images/{$this->filename}");
     }
 }
