@@ -1,13 +1,14 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get(
     'health',
     'HealthController@index'
-);
+)->name('health');
+
+Route::get(
+    '/',
+    'ProductController@index'
+)->name('home');
 
 Route::post(
 // 로그아웃은 Customer 것을 공용으로 사용합니다.
