@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Category;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*', function ($view) {
+            $view->with([
+                // 뷰에서 카테고리별 상품 개수를 조회할 때는 $category->products_count
+                'categories' => Category::withCount('products')->get()
+            ]);
+        });
     }
 
     /**

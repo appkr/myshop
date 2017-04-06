@@ -78,5 +78,23 @@ Route::prefix('members')->group(function () {
     )->name('members.login.submit');
 
     // Member 등록이나 비밀번호 초기화는 보통 관리자만 접근할 수 있는 백오피스에서 합니다.
+  
+    Route::resource(
+        'products',
+        'Member\ProductController',
+        ['except' => ['index', 'show']]
+    );
 });
 
+Route::get(
+    'products',
+    'ProductController@index'
+)->name('products.index');
+Route::get(
+    'products/{product}',
+    'ProductController@show'
+)->name('products.show');
+Route::post(
+    'products/images',
+    'ImageController@store'
+)->name('products.images.store');

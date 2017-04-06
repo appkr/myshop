@@ -37,6 +37,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    protected $fillable = [
+        'category_id',
+        'title',
+        'sub_title',
+        'price',
+        'options',
+        'description',
+    ];
+
     /* RELATIONSHIPS */
 
     public function member()
