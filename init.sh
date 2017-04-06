@@ -1,0 +1,1 @@
+docker exec -it myshop-local /bin/bash /init.sh

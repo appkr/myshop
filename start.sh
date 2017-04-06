@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 CONTAINER_NAME=myshop-local
 IMAGE_NAME="appkr/myshop:local"
 EXISTS=$(docker inspect --format {{.State.Status}} ${CONTAINER_NAME} 2>/dev/null)
