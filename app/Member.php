@@ -36,6 +36,8 @@ class Member extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'admin';
+
     /* RELATIONSHIPS */
 
     public function products()

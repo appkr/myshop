@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:customers');
+    }
+
+    public function dashboard()
+    {
+        return view('customers.dashboard');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -9,6 +9,8 @@ if [  "${RUNNING}" == "true" ];then
     exit 0
 fi
 
+rm -rf `pwd`/docker-mount-point/*.pid `pwd`/docker-mount-point/*.err
+
 if [ "${EXISTS}" == "exited" ]; then
     docker start ${CONTAINER_NAME}
 else
