@@ -49,6 +49,10 @@ class Product extends Model implements Buyable
         'description',
     ];
 
+    protected $appends = [
+        'quantity',
+    ];
+
     /* Implement Contracts */
 
     public function price()
@@ -83,6 +87,11 @@ class Product extends Model implements Buyable
     public function getOptionsAttribute(string $value)
     {
         return collect(json_decode($value));
+    }
+
+    public function getQuantityAttribute()
+    {
+        return $this->quantity();
     }
 
     /* Mutators */

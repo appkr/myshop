@@ -29,9 +29,23 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- Authentication Links -->
         @if (Auth::guest())
-          <li><a href="{{ route('customers.login') }}">Login</a></li>
-          <li><a href="{{ route('customers.register') }}">Register</a></li>
+          <li><a href="{{ route('customers.login') }}">로그인</a></li>
+          <li><a href="{{ route('customers.register') }}">회원가입</a></li>
         @else
+          @if (Auth::guard('members')->check())
+            <li>
+              <a href="{{ route('products.create') }}">
+                상품등록
+              </a>
+            </li>
+          @endif
+          @if (Auth::guard('customers')->check())
+            <li>
+              <a href="{{ route('carts.index') }}">
+                장바구니
+              </a>
+            </li>
+          @endif
           <li class="dropdown">
             <a href="#"
                class="dropdown-toggle"
@@ -44,10 +58,15 @@
 
             <ul class="dropdown-menu" role="menu">
               <li>
+                <a href="{{ route('customers.dashboard') }}">
+                  마이페이지
+                </a>
+              </li>
+              <li>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
-                  Logout
+                  로그아웃
                 </a>
 
                 <form id="logout-form"

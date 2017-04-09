@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use App\Http\Controllers\Customer\CartController;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,5 +35,10 @@ class AppServiceProvider extends ServiceProvider
                 \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
             );
         }
+
+//        $this->app->bind(\App\Contracts\Cart::class, \App\Cart::class);
+//        $this->app->when(CartController::class)
+//            ->needs(\App\Contracts\Cart::class)
+//            ->give(\App\Cart::class);
     }
 }

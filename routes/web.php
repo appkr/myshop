@@ -62,6 +62,16 @@ Route::prefix('customers')->group(function () {
         'social/{provider}',
         'Auth\Customer\SocialController@execute'
     )->name('customers.social.login');
+
+    Route::resource(
+        'carts',
+        'Customer\CartController',
+        ['only' => ['index', 'store', 'edit', 'destroy']]
+    );
+    Route::delete(
+        'carts/reset',
+        'Customer\CartController@reset'
+    );
 });
 
 Route::prefix('members')->group(function () {

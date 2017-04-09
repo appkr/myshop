@@ -120,10 +120,10 @@ class CartTest extends TestCase
     {
         $buyable = $this->getBuyable();
         $this->cart->add($buyable, 1);
-        $this->cart->add($buyable, 2);
-//        dd($this->cart->items());
 
         $this->assertCount(1, $this->cart->items());
+
+        $this->cart->add($buyable, 1);
         $this->assertEquals(2, $this->cart->findItem($buyable)->quantity());
     }
 

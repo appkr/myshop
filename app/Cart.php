@@ -4,13 +4,22 @@ namespace App;
 
 use App\Contracts\Cart as CartContract;
 use App\Exceptions\CartItemNotFoundException;
+use Carbon\Carbon;
 use Illuminate\Contracts\Cache\Factory as CacheStorage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Cart implements CartContract
 {
+    const CART_DAY_TO_LIVE = 7;
+
+    /** @var CacheStorage */
     private $storage;
+
+    /** @var string */
     private $storageKey;
+
+    /** @var Collection */
     private $instance;
 
     public function __construct(CacheStorage $cache, Request $request)
@@ -48,10 +57,11 @@ class Cart implements CartContract
      */
     public function add(Buyable $buyable, int $quantity = 1)
     {
+        /** @var Buyable $found */
         $found = $this->findItem($buyable);
 
         if ($found) {
-            $this->update($buyable, $quantity);
+            $this->update($buyable, $found->quantity() + $quantity);
             return;
         }
 
@@ -145,8 +155,10 @@ class Cart implements CartContract
      */
     private function saveToStorage()
     {
+        $expireAt = Carbon::now()->addDay(self::CART_DAY_TO_LIVE);
+
         $this->storage->put(
-            $this->storageKey, $this->instance
+            $this->storageKey, $this->instance, $expireAt
         );
     }
 
