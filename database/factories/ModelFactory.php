@@ -12,6 +12,7 @@ use App\Member;
 use App\Order;
 use App\PackageType;
 use App\PaymentMethod;
+use App\Price;
 use App\Product;
 use App\Question;
 use App\QuestionType;
@@ -64,7 +65,11 @@ $factory->define(Product::class, function () use ($faker) {
         'sub_title' => $faker->korSentence(),
         'stock' => rand(10, 100),
         'price' => rand(250000, 3000000),
-        'options' => json_encode([str_random(10) => $faker->korParagraph()]),
+        'options' => collect([
+            [
+                str_random(10) => $faker->korParagraph()
+            ]
+        ]),
         'description' => $faker->korParagraph(),
     ];
 });
