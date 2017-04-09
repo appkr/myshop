@@ -36,10 +36,10 @@ class SocialController extends Controller
         $nativeUser = Customer::whereEmail($socialUser->getEmail())->first();
 
         if (! $nativeUser) {
-            return view('auth.customers.register', [
+            return redirect(route('customers.register', [
                 'name' => $socialUser->getName(),
                 'email' => $socialUser->getEmail(),
-            ]);
+            ]));
         }
 
         auth('customers')->login($nativeUser);
