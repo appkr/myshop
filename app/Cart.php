@@ -5,7 +5,7 @@ namespace App;
 use App\Contracts\Cart as CartContract;
 use App\Exceptions\CartItemNotFoundException;
 use Carbon\Carbon;
-use Illuminate\Contracts\Cache\Factory as CacheStorage;
+use Illuminate\Contracts\Cache\Repository as CacheStorage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 

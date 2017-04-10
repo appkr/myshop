@@ -16,6 +16,7 @@ class CreateOrderProductTable extends Migration
         Schema::create('order_product', function (Blueprint $table) {
             $table->unsignedInteger('order_id')->index()->comment('주문 ID');
             $table->unsignedInteger('product_id')->index()->comment('상품 ID');
+            $table->unsignedInteger('quantity')->default(1)->comment('상품 수량');
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders');

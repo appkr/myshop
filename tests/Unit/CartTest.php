@@ -9,7 +9,7 @@ use App\Customer;
 use App\Exceptions\CartItemNotFoundException;
 use App\Member;
 use App\Product;
-use Illuminate\Cache\CacheManager;
+use Illuminate\Contracts\Cache\Repository as CacheStorage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
@@ -70,7 +70,7 @@ class CartTest extends TestCase
 
     private function createCartStorage()
     {
-        $this->storage = cache();
+        $this->storage = app(CacheStorage::class);
     }
 
     private function createCart()

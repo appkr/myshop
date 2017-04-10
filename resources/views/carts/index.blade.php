@@ -42,8 +42,40 @@
     @endif
   </table>
   <div class="text-center">
-    <a class="btn btn-primary">
+    <button id="checkout" class="btn btn-primary">
       결제하기
-    </a>
+    </button>
   </div>
 @endsection
+
+@section('script')
+  <script>
+    $("#checkout").on("click", function (e) {
+      var self = $(this);
+
+      $.ajax({
+        type: "POST",
+        url: "{{ route('carts.checkout') }}",
+        data: {
+          _token: Laravel.csrfToken
+        }
+      }).then(function (data) {
+        console.log(data);
+        createOrder(data);
+      });
+    });
+
+    var createOrder = function (data) {
+      $.ajax({
+        type: "POST",
+        url: "{{ route('orders.store') }}",
+        data: {
+          _token: Laravel.csrfToken,
+          payment_method: data.payment_method
+        }
+      }).then(function (data) {
+        window.location.href = "{{ route('products.index') }}";
+      });
+    };
+  </script>
+@stop

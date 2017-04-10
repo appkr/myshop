@@ -33,6 +33,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
+    protected $fillable = [
+        'billable_amount',
+        'billable_delivery_fee',
+        'payment_method',
+        'checkout_at',
+    ];
+
     protected $dates = [
         'checkout_at',
     ];
@@ -41,7 +48,8 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this->belongsToMany(Product::class)
+            ->withTimestamps()->withPivot('quantity');
     }
 
     public function customer()

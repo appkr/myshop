@@ -72,6 +72,15 @@ Route::prefix('customers')->group(function () {
         'carts/reset',
         'Customer\CartController@reset'
     );
+    Route::any('carts/checkout', function () {
+        return response()->json([
+            'payment_method' => App\PaymentMethod::getInstance('CARD')
+        ], 201);
+    })->name('carts.checkout');
+    Route::post(
+        'orders',
+        'Customer\OrderController@store'
+    )->name('orders.store');
 });
 
 Route::prefix('members')->group(function () {

@@ -69,7 +69,8 @@ class Product extends Model implements Buyable
 
     public function order()
     {
-        return $this->belongsToMany(Order::class)->withTimestamps();
+        return $this->belongsToMany(Order::class)
+            ->withTimestamps()->withPivot('quantity');
     }
 
     public function category()
