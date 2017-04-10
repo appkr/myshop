@@ -35,10 +35,5 @@ class AppServiceProvider extends ServiceProvider
                 \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
             );
         }
-
-//        $this->app->bind(\App\Contracts\Cart::class, \App\Cart::class);
-//        $this->app->when(CartController::class)
-//            ->needs(\App\Contracts\Cart::class)
-//            ->give(\App\Cart::class);
     }
 }

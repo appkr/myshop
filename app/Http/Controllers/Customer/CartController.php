@@ -6,7 +6,6 @@ use App\Cart;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RemoveCartItemRequest;
 use App\Http\Requests\StoreCartRequest;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -17,14 +16,16 @@ class CartController extends Controller
 
     public function index(Cart $cart)
     {
-        return $cart->items()->toJson();
+        return view('carts.index', [
+            'cart' => $cart
+        ]);
     }
 
     public function store(StoreCartRequest $request, Cart $cart)
     {
         $cart->add($request->getProduct(), 1);
-        return $cart->items()->toJson();
 
+        return $cart->items()->toJson();
         return response()->json(null, 204);
     }
 
