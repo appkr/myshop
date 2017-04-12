@@ -77,10 +77,19 @@ Route::prefix('customers')->group(function () {
             'payment_method' => App\PaymentMethod::getInstance('CARD')
         ], 201);
     })->name('carts.checkout');
-    Route::post(
+    Route::resource(
         'orders',
-        'Customer\OrderController@store'
-    )->name('orders.store');
+        'Customer\OrderController',
+        [
+            'only' => ['index', 'store', 'update', 'destroy'],
+            'names' => [
+                'index' => 'customers.orders.index',
+                'store' => 'customers.orders.store',
+                'update' => 'customers.orders.update',
+                'destroy' => 'customers.orders.destroy',
+            ]
+        ]
+    );
 });
 
 Route::prefix('members')->group(function () {
@@ -104,6 +113,10 @@ Route::prefix('members')->group(function () {
         'Member\ProductController',
         ['except' => ['index', 'show']]
     );
+    Route::get(
+        'orders',
+        'Member\OrderController@index'
+    )->name('members.orders.index');
 });
 
 Route::get(

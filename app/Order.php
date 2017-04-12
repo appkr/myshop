@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Order wherePaymentMethod($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Order whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Query\Builder thisWeek($query)
  */
 class Order extends Model
 {
@@ -65,5 +68,14 @@ class Order extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    /* QUERY SCOPE */
+
+    public function scopeThisWeek(Builder $query)
+    {
+        return $query->where(
+            'created_at', '>', Carbon::now()->subWeek()
+        );
     }
 }
