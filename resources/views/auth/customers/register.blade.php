@@ -22,7 +22,7 @@
                        type="text"
                        class="form-control"
                        name="name"
-                       value="{{ old('name', $name) }}"
+                       value="{{ old('name', request('name')) }}"
                        autofocus>
                 {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
               </div>
@@ -39,7 +39,7 @@
                   type="email"
                   class="form-control"
                   name="email"
-                  value="{{ old('email', $email) }}">
+                  value="{{ old('email', request('email')) }}">
                 {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
               </div>
             </div>

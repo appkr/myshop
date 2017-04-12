@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use App\Http\Controllers\Customer\CartController;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
