@@ -16,6 +16,23 @@
 @section('content')
   <h1>상품 목록</h1>
 
+  <form method="get" action="{{ route('products.index') }}" class="form-inline pull-right">
+    <div class="form-group">
+      <input type="text" name="search" class="form-control" id="search" placeholder="검색어">
+    </div>
+    <button type="submit" class="btn btn-default">검색</button>
+  </form>
+
+  <ul class="nav nav-pills">
+    @foreach ($categories as $category)
+    <li role="presentation" {!! request('category') == $category->name ? 'class="active"' : null !!}>
+      <a href="{{ route('products.index', ['category' => $category->name]) }}">
+        {{ $category->name }}
+      </a>
+    </li>
+    @endforeach
+  </ul>
+
   @foreach ($products->chunk(3) as $chunk)
     <ul class="row">
       @foreach ($chunk as $product)
@@ -52,7 +69,7 @@
   @endforeach
 
   <div class="text-center">
-    {!!  $products->links() !!}
+    {!! $products->appends(request()->except('page'))->links() !!}
   </div>
 @endsection
 
