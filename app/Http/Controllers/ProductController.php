@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Queries\ProductQuery;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request, ProductQuery $query)
     {
-        $products = Product::with('category', 'images')
-            ->latest()->paginate(12);
+        $products = $query->get($request);
 
         return view('products.index', [
             'products' => $products
