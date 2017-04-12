@@ -32,13 +32,6 @@
           <li><a href="{{ route('customers.login') }}">로그인</a></li>
           <li><a href="{{ route('customers.register') }}">회원가입</a></li>
         @else
-          @if (Auth::guard('members')->check())
-            <li>
-              <a href="{{ route('products.create') }}">
-                상품등록
-              </a>
-            </li>
-          @endif
           @if (Auth::guard('customers')->check())
             <li>
               <a href="{{ route('carts.index') }}">
@@ -62,6 +55,16 @@
                   마이페이지
                 </a>
               </li>
+              @if (Auth::guard('members')->check())
+                <li>
+                  <a href="{{ route('products.create') }}">
+                    상품등록
+                  </a>
+                  <a href="{{ route('members.orders.index') }}">
+                    주문관리
+                  </a>
+                </li>
+              @endif
               <li>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();

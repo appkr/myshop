@@ -68,7 +68,7 @@
     var createOrder = function (data) {
       $.ajax({
         type: "POST",
-        url: "{{ route('orders.store') }}",
+        url: "{{ route('customers.orders.store') }}",
         data: {
           _token: Laravel.csrfToken,
           payment_method: data.payment_method

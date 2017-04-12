@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Cart;
 use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
